@@ -1,0 +1,10 @@
+Conversation ID,Name,Content
+intro,Doc Yoshida,"Ninjo, I warned you before. It's too dangerous to go alone."
+intro,Ninjo,"I have to get my revenge, even if I die. "
+intro,Ninjo,Don't get into my way or I will cut you off.
+intro,Doc Yoshida,I know. I will stay standby and try to help you survive.
+,,
+elevator,Doc Yoshida,I can't hack this elevator. Find another way!
+,,
+elevator-works,Doc Yoshida,"Finally, I got the security key! Your goal is near!"
+elevator-works,Doc Yoshida,Press [UP] to enter the elevator!

@@ -1,0 +1,159 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &196201279801524475
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8232568746439501381}
+  - component: {fileID: 7901046771223483209}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8232568746439501381
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196201279801524475}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7901046771223483209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196201279801524475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca8c6a82d3ba4ce49bc23838a74274d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  themes:
+  - source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 195116158fa36a4498dd50e5b6f78b76, type: 3}
+    name: theme1
+    loop: 0
+    isTheme: 0
+    pitch: 1
+    volume: 1
+    isFadingOut: 0
+  - source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 56bfc816a88da4945962bfc163ce2e23, type: 3}
+    name: theme2
+    loop: 0
+    isTheme: 0
+    pitch: 1
+    volume: 1
+    isFadingOut: 0
+  - source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 99be8985f87ac9d45aca7a043ff53915, type: 3}
+    name: theme3
+    loop: 0
+    isTheme: 0
+    pitch: 1
+    volume: 1
+    isFadingOut: 0
+  sounds:
+  - source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 78b7ab8c5233bec44a9d814fc23a9533, type: 3}
+    name: fireDamage
+    loop: 1
+    isTheme: 0
+    pitch: 1
+    volume: 1
+    isFadingOut: 0
+  - source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 4e52b426cba49494f8ab406b4fa8c8ee, type: 3}
+    name: jumpA
+    loop: 1
+    isTheme: 0
+    pitch: 1
+    volume: 1
+    isFadingOut: 0
+  - source: {fileID: 0}
+    clip: {fileID: 8300000, guid: adb0b4495d9ad384d99beaf132718ef5, type: 3}
+    name: jumpB
+    loop: 1
+    isTheme: 0
+    pitch: 1
+    volume: 1
+    isFadingOut: 0
+  - source: {fileID: 0}
+    clip: {fileID: 8300000, guid: d4d78043bc5f66141bf5f1302e460baf, type: 3}
+    name: lightningDamage
+    loop: 1
+    isTheme: 0
+    pitch: 1
+    volume: 1
+    isFadingOut: 0
+  - source: {fileID: 0}
+    clip: {fileID: 8300000, guid: f57ccbad1540b434f9e393a2758f1567, type: 3}
+    name: shurikenShoot
+    loop: 1
+    isTheme: 0
+    pitch: 1
+    volume: 1
+    isFadingOut: 0
+  - source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 9a0fe4d09695c5f469696cb2a7f4882e, type: 3}
+    name: shurikenSpawn
+    loop: 1
+    isTheme: 0
+    pitch: 1
+    volume: 1
+    isFadingOut: 0
+  - source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 9bdf14ccf60c9d74a922ab9d8850a5e6, type: 3}
+    name: explosion
+    loop: 1
+    isTheme: 0
+    pitch: 1
+    volume: 1
+    isFadingOut: 0
+  - source: {fileID: 0}
+    clip: {fileID: 8300000, guid: d9802ae43ac59bc41afbaf1f9de42229, type: 3}
+    name: fgFire
+    loop: 1
+    isTheme: 0
+    pitch: 1
+    volume: 1
+    isFadingOut: 0
+  - source: {fileID: 0}
+    clip: {fileID: 8300000, guid: c6ab0007c9b900841bfe81225ad16ba2, type: 3}
+    name: kfJump
+    loop: 1
+    isTheme: 0
+    pitch: 1
+    volume: 1
+    isFadingOut: 0
+  - source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 543124250a59b0149b15b35a361a661d, type: 3}
+    name: kfShoot
+    loop: 1
+    isTheme: 0
+    pitch: 1
+    volume: 1
+    isFadingOut: 0
+  - source: {fileID: 0}
+    clip: {fileID: 8300000, guid: c1e70889d06053b47b6a8180859497a5, type: 3}
+    name: zLightning
+    loop: 1
+    isTheme: 0
+    pitch: 1
+    volume: 1
+    isFadingOut: 0
