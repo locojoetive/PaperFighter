@@ -49,12 +49,13 @@ public class TouchBehaviour : MonoBehaviour
     internal void Update()
     {
         active = InputManager.touchActive && InputManager.active;
+        useInGameControls = StageManager.onStage && !UIManager.paused;
+        joystick.gameObject.SetActive(useInGameControls);
+
         if (active)
         {
             neutralScreenPosition = .5f * new Vector2(Camera.main.scaledPixelWidth, Camera.main.scaledPixelHeight);
             ResetJumpAndAction();
-            useInGameControls = StageManager.onStage && !UIManager.paused;
-            joystick.gameObject.SetActive(useInGameControls);
 
             if (useInGameControls) 
             { 
@@ -207,6 +208,7 @@ public class TouchBehaviour : MonoBehaviour
                 {
                     Confirm();
                 }
+             
         }
     }
 

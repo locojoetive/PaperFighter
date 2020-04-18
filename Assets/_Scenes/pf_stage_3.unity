@@ -541,15 +541,15 @@ PrefabInstance:
       propertyPath: speed
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 714650756237439214, guid: 9bcff7bdca6daa346a3883aedc8b4dcb,
-        type: 3}
-      propertyPath: whatIsPlayer.m_Bits
-      value: 16384
-      objectReference: {fileID: 0}
     - target: {fileID: 6119180201642512532, guid: 9bcff7bdca6daa346a3883aedc8b4dcb,
         type: 3}
       propertyPath: speed
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 714650756237439214, guid: 9bcff7bdca6daa346a3883aedc8b4dcb,
+        type: 3}
+      propertyPath: whatIsPlayer.m_Bits
+      value: 16384
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bcff7bdca6daa346a3883aedc8b4dcb, type: 3}
@@ -962,7 +962,7 @@ PrefabInstance:
     - target: {fileID: 5305264424156527685, guid: de8100b53a4344d4b9aeeb4eacf58ac2,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5305264424156527683, guid: de8100b53a4344d4b9aeeb4eacf58ac2,
         type: 3}
@@ -1328,15 +1328,15 @@ PrefabInstance:
       propertyPath: speed
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 714650756237439214, guid: 9bcff7bdca6daa346a3883aedc8b4dcb,
-        type: 3}
-      propertyPath: whatIsPlayer.m_Bits
-      value: 16384
-      objectReference: {fileID: 0}
     - target: {fileID: 6119180201642512532, guid: 9bcff7bdca6daa346a3883aedc8b4dcb,
         type: 3}
       propertyPath: speed
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 714650756237439214, guid: 9bcff7bdca6daa346a3883aedc8b4dcb,
+        type: 3}
+      propertyPath: whatIsPlayer.m_Bits
+      value: 16384
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bcff7bdca6daa346a3883aedc8b4dcb, type: 3}

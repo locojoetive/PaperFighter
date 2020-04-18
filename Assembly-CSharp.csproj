@@ -106,10 +106,13 @@
     <Compile Include="Assets\_Scripts\Lib\TextBox\TextImporter.cs" />
     <Compile Include="Assets\_Scripts\Lib\UIManager.cs" />
     <Compile Include="Assets\_Scripts\PlayCredits.cs" />
-    <Compile Include="Assets\_Scripts\Player\PlayerMovementAttack.cs" />
+    <Compile Include="Assets\_Scripts\Player\AttackState.cs" />
+    <Compile Include="Assets\_Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\_Scripts\Player\PlayerStateAnimationSound.cs" />
     <Compile Include="Assets\_Scripts\Player\ShurikenScript.cs" />
     <Compile Include="Assets\_Scripts\RenderImageOnCameraLayer.cs" />
+    <Compile Include="Assets\PlayerAttack.cs" />
+    <Compile Include="Assets\PlayTextScene.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />

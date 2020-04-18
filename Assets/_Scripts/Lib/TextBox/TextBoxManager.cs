@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class TextBoxManager : MonoBehaviour
@@ -95,7 +93,7 @@ public class TextBoxManager : MonoBehaviour
     public static void EnableTextBox(Conversation conversation)
     {
         active = true;
-        textBox.GetComponent<Image>().CrossFadeAlpha(100F, 0.1f, false);
+        // textBox.GetComponent<Image>().CrossFadeAlpha(100F, 0.1f, false);
         foreach (Transform go in textBox.GetComponentsInChildren<Transform>(true))
         {
             go.gameObject.SetActive(true);

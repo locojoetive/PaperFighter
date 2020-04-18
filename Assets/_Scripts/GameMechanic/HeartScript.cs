@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class HeartScript : MonoBehaviour {
     public bool hit;
@@ -19,8 +18,6 @@ public class HeartScript : MonoBehaviour {
 
 
     void Start () {
-        Debug.Log("Start has been called");
-
         // handle Sizes
         newSize = GetComponent<Transform>().localScale;
         float horzExtent = Camera.main.orthographicSize * Screen.width / Screen.height;

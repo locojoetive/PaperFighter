@@ -7,10 +7,10 @@ public class EnableOnStage : MonoBehaviour
 
     void Awake()
     {
-        OnlyDiplayOnStage(SceneManager.GetActiveScene().name);
+        OnlyDiplayOnScene(SceneManager.GetActiveScene().name);
     }
 
-    private void OnlyDiplayOnStage(string sceneName)
+    private void OnlyDiplayOnScene(string sceneName)
     {
         bool onStage = sceneName.Contains("stage");
         foreach (GameObject go in onlyDisplayOnStage)
@@ -38,6 +38,6 @@ public class EnableOnStage : MonoBehaviour
 
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
-        OnlyDiplayOnStage(scene.name);
+        OnlyDiplayOnScene(scene.name);
     }
 }

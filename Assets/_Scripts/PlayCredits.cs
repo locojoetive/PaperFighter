@@ -8,12 +8,14 @@ public class PlayCredits : MonoBehaviour
     public static bool creditsHaveEnded = false;
     public Credit[] credits;
     public TextMeshProUGUI text;
+    public TextMeshProUGUI thankYou;
     public float speed;
     public float startingLineY,
         finishingLineY;
 
     private void Start()
     {
+        thankYou.gameObject.SetActive(false);
         startingLineY = - Camera.main.scaledPixelHeight;
         text.GetComponent<RectTransform>().anchoredPosition += Vector2.up * startingLineY;
         text.text = "";
@@ -35,13 +37,22 @@ public class PlayCredits : MonoBehaviour
 
     private void Update()
     {
-        if (text.GetComponent<RectTransform>().anchoredPosition.y < finishingLineY)
+        if (creditsHaveEnded)
         {
-            if (InputManager.jumpContinuous) text.GetComponent<RectTransform>().anchoredPosition += Vector2.up * 20F * speed;
-            else text.GetComponent<RectTransform>().anchoredPosition += Vector2.up * speed;
-        } else if (!creditsHaveEnded)
-        {
-            creditsHaveEnded = true;
+            thankYou.gameObject.SetActive(true);
         }
+        else
+        {
+            if (text.GetComponent<RectTransform>().anchoredPosition.y < finishingLineY)
+            {
+                if (Input.touchCount > 0) text.GetComponent<RectTransform>().anchoredPosition += Vector2.up * 20F * speed;
+                else text.GetComponent<RectTransform>().anchoredPosition += Vector2.up * speed;
+            }
+            else if (!creditsHaveEnded)
+            {
+                creditsHaveEnded = true;
+            }
+        }
+
     }
 }

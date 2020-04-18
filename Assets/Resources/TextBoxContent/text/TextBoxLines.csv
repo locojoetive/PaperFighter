@@ -1,10 +1,7 @@
 Conversation ID,Name,Content
-intro,Doc Yoshida,"Ninjo, I warned you before. It's too dangerous to go alone."
-intro,Ninjo,"I have to get my revenge, even if I die. "
-intro,Ninjo,Don't get into my way or I will cut you off.
-intro,Doc Yoshida,I know. I will stay standby and try to help you survive.
+intro,Ninja King,"Kung Frog and his Minions are threatening Ninja land, young Ninja."
+intro,Ninja King,You are chosen to assassinate him before he can execute his malicious plans!
 ,,
-elevator,Doc Yoshida,I can't hack this elevator. Find another way!
+outro,Ninja King,Congratulations! You saved Ninja land and all his inhabitants!
+outro,Ninja King,We are proud of you little Ninja.
 ,,
-elevator-works,Doc Yoshida,"Finally, I got the security key! Your goal is near!"
-elevator-works,Doc Yoshida,Press [UP] to enter the elevator!

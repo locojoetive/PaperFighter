@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/_Scenes/pf_controls.unity
     guid: 7135891c66fbb9b4285c83481d88f537
   - enabled: 1
-    path: Assets/_Scenes/pf_credits.unity
-    guid: 8770b2b298e31294fbc6d627911999cc
+    path: Assets/_Scenes/pf_intro.unity
+    guid: 62547ee1e6dcd694385a4bc79939c743
   - enabled: 1
     path: Assets/_Scenes/pf_stage_1.unity
     guid: 4aa053e2a855f534c9472a391531cc00
@@ -29,4 +29,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/pf_stage_5.unity
     guid: 2b8c2406d35f48f4d9183ab38b8e9236
+  - enabled: 1
+    path: Assets/_Scenes/pf_outro.unity
+    guid: 6ca3868a158a74b44a91e054ef12b912
+  - enabled: 1
+    path: Assets/_Scenes/pf_credits.unity
+    guid: 8770b2b298e31294fbc6d627911999cc
   m_configObjects: {}

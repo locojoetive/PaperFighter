@@ -31,7 +31,7 @@ public class ShurikenScript : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "groundWall")
+        if (other.gameObject.tag == "groundWall" || other.gameObject.tag == "Player")
         {
             animator.SetTrigger("Damaged");
             damaged = true;

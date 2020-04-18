@@ -3,8 +3,10 @@
 public class PlayerStateAnimationSound : MonoBehaviour {
 
     private Rigidbody2D rb;
-    private Animator animator;
-    private AudioManager audioManager;
+    [HideInInspector]
+    public Animator animator;
+    [HideInInspector]
+    public AudioManager audioManager;
 
     public Transform groundCheck;
     public Transform wallDetect;
@@ -12,7 +14,6 @@ public class PlayerStateAnimationSound : MonoBehaviour {
 
     // States
     public bool jumping,
-        aiming = false,
         commitToDirection,
         damageReceived = false,
         facingRight = true,
@@ -21,10 +22,11 @@ public class PlayerStateAnimationSound : MonoBehaviour {
         move = true,
         onWall,
         recovered = true,
-        shurikenThrownOrCanceled = true,
+        shurikenThrown = true,
+        upsideDown = false,
         wallGrabbing;
 
-    private float
+    public float
         freezeUntil = 0.0f,
         groundRadius = 0.2f,
         horizontalSpeed,
@@ -35,11 +37,8 @@ public class PlayerStateAnimationSound : MonoBehaviour {
     public int
         jumpNo = 0;
 
-    //Gravity
-    private bool upsideDown = false;
-
     //Damage stuff
-    public HeartScript heart;
+    private HeartScript heart;
     private int LifeCount = 3;
     private float 
         recovery = 0.0f,
@@ -91,7 +90,7 @@ public class PlayerStateAnimationSound : MonoBehaviour {
         wallGrabbing = !grounded &&
             onWall &&
             commitToDirection;
-        move = shurikenThrownOrCanceled && freezeUntil < Time.time && recovered && (!hit && recovered);
+        move = shurikenThrown && freezeUntil < Time.time && recovered && (!hit && recovered);
     }
 
 
@@ -108,7 +107,6 @@ public class PlayerStateAnimationSound : MonoBehaviour {
         {
             animator.SetFloat("vSpeed", verticalVelocity);
         }
-        animator.SetBool("Aiming", aiming);
     }
 
     public void HandleBurnDamage()
@@ -223,87 +221,8 @@ public class PlayerStateAnimationSound : MonoBehaviour {
 
     public void ResetReleaseWhenHit()
     {
-        if (aiming)
-        {
-            aiming = false;
-            shurikenThrownOrCanceled = true;
-            animator.SetBool("Aiming", false);
-            animator.SetBool("ReleaseAttack", false);
-        }
-    }
-
-    internal void ThrowShuriken()
-    {
+        shurikenThrown = true;
+        animator.SetBool("Aiming", false);
         animator.SetBool("ReleaseAttack", false);
-        audioManager.PlaySound("shurikenShoot", 1F);
-        shurikenThrownOrCanceled = true;
-    }
-
-    internal void setAiming ()
-    {
-        shurikenThrownOrCanceled = false;
-        aiming = true;
-        animator.SetBool("ReleaseAttack", false);
-        audioManager.PlaySound("shurikenSpawn", 1F);
-    }
-
-    public void resetAiming()
-    {
-        aiming = false;
-        animator.SetBool("ReleaseAttack", true);
-    }
-
-    internal bool isAiming()
-    {
-        return aiming;
-    }
-    internal bool isHit()
-    {
-        return hit;
-    }
-
-
-    internal bool isFacingRight()
-    {
-        return facingRight;
-    }
-
-    internal bool isJumping()
-    {
-        return jumping;
-    }
-
-    internal bool isMovable()
-    {
-        return move;
-    }
-
-    internal bool isRecovered()
-    {
-        return recovered;
-    }
-    internal bool isUpsideDown()
-    {
-        return upsideDown;
-    }
-
-    internal bool isWallGrabbing()
-    {
-        return wallGrabbing;
-    }
-
-    internal bool isJumpButtonPressed()
-    {
-        return jumpButton;
-    }
-
-    internal float horizontalMovementDegree()
-    {
-        return horizontalSpeed;
-    }
-
-    internal int getJumpNo()
-    {
-        return jumpNo;
     }
 }

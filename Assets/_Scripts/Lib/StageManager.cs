@@ -6,22 +6,21 @@ public class StageManager : MonoBehaviour
 {
     private static bool initializing = false;
     public static bool 
-        hasIntroEnded,
+        hasTextSceneEnded,
         paused = false,
         onTitle,
         onControls,
         onIntro,
         onStage,
+        onOutro,
         onCredits;
 
     public static int 
         currentStage = 0,
-        lastStage = 4;
+        lastStage = 5;
 
-    public static string activeScene;
-    
+    public static string activeScene;    
     private static FadeInAndOutCamera fade;
-
 
     private void Update()
     {
@@ -29,6 +28,7 @@ public class StageManager : MonoBehaviour
         ProtocolOnControls();
         ProtocolOnIntro();
         ProtocolOnStage();
+        ProtocolOnOutro();
         ProtocolOnCredits();
     }
 
@@ -59,7 +59,7 @@ public class StageManager : MonoBehaviour
             {
                 InputManager.confirm = false;
                 currentStage = 1;
-                fade.FadeToNextScene("pf_stage_" + currentStage);
+                fade.FadeToNextScene("pf_intro");
             }
         }
     }
@@ -67,10 +67,9 @@ public class StageManager : MonoBehaviour
 
     private void ProtocolOnIntro()
     {
-        if (onIntro && hasIntroEnded && InputManager.confirm)
+        if (!initializing && onIntro && hasTextSceneEnded)
         {
-            InputManager.confirm = false;
-            hasIntroEnded = false;
+            initializing = true;
             currentStage = 1;
             fade.FadeToNextScene("pf_stage_" + currentStage);
         }
@@ -86,13 +85,23 @@ public class StageManager : MonoBehaviour
             }
         }
     }
+    private void ProtocolOnOutro()
+    {
+        if (onOutro && hasTextSceneEnded && InputManager.confirm)
+        {
+            InputManager.confirm = false;
+            hasTextSceneEnded = false;
+            fade.FadeToNextScene("pf_credits");
+        }
+    }
 
     private void ProtocolOnCredits()
     {
         if (onCredits)
         {
-            if (PlayCredits.creditsHaveEnded && (InputManager.escape || InputManager.confirm))
+            if (!initializing && PlayCredits.creditsHaveEnded && (InputManager.escape || InputManager.confirm))
             {
+                initializing = true;
                 PlayCredits.creditsHaveEnded = false;
                 InputManager.escape = false;
                 InputManager.confirm = false;
@@ -108,6 +117,7 @@ public class StageManager : MonoBehaviour
         onControls = activeScene.Contains("controls");
         onIntro = activeScene.Contains("intro");
         onStage = activeScene.Contains("stage");
+        onOutro = activeScene.Contains("outro");
         onCredits = activeScene.Contains("credits");
         if (onStage)
         {
@@ -135,7 +145,7 @@ public class StageManager : MonoBehaviour
             }
             else
             {
-                fade.FadeToNextScene("pf_credits");
+                fade.FadeToNextScene("pf_outro");
             }
         }
     }
@@ -164,6 +174,7 @@ public class StageManager : MonoBehaviour
 
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
+        hasTextSceneEnded = false;
         initializing = false;
         IdentifyScene(scene);
 
