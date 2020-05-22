@@ -695,7 +695,8 @@ MonoBehaviour:
     - Chair of Software Engineering
   creditPrefab: {fileID: 5472468479833854979, guid: 565deddb8b798ab44a44c01748da885e,
     type: 3}
-  creditObjects: []
+  creditObjects:
+  - {fileID: 0}
   backgroundImage: {fileID: 116827687}
   thankYou: {fileID: 553786885}
   speed: 20

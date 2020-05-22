@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// [ExecuteInEditMode]
+[ExecuteInEditMode]
 public class PlayCredits : MonoBehaviour
 {
     public static bool creditsHaveEnded = false;
