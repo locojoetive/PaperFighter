@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/_Scenes/pf_controls.unity
+- path: Assets/_Stages/Stage1/pf_stage_1.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
