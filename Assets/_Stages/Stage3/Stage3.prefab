@@ -2357,7 +2357,9 @@ PrefabInstance:
       propertyPath: abovePlayerFactor
       value: 4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5070612, guid: 43f48e7ff5b9d1347a9b9994633748ba, type: 3}
+    - {fileID: 11492662, guid: 43f48e7ff5b9d1347a9b9994633748ba, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 43f48e7ff5b9d1347a9b9994633748ba, type: 3}
 --- !u!4 &141784166928709459 stripped
 Transform:

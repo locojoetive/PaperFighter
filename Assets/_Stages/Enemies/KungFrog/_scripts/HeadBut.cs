@@ -9,11 +9,11 @@ public class HeadBut : MonoBehaviour
         body = FindObjectOfType<KungFrogStatesAnimationSound>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (collision.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && body.life > 0)
         {
-            collision.gameObject.GetComponent<PlayerStateAnimationSound>().HandleNormalDamage();
+            other.gameObject.GetComponent<PlayerStateAnimationSound>().HandleNormalDamage();
         }
     }
 }

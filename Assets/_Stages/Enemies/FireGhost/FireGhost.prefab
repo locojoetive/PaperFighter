@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 11490094}
   - component: {fileID: 714650756237439214}
   - component: {fileID: 6119180201642512532}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FireGhost
   m_TagString: hittable
   m_Icon: {fileID: 0}
@@ -74,6 +74,8 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -186,7 +188,7 @@ MonoBehaviour:
   detectionRadius: 10
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 16384
+    m_Bits: 1024
 --- !u!114 &6119180201642512532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,11 +201,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14ff887dad1740547a3c2f0de73d0c59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  loopTime: 5
-  life: 1
-  nextAttack: 0
   coolDown: 5
+  loopTime: 5
+  nextAttack: 0
+  speed: 2
+  life: 1
 --- !u!1 &170604
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,7 +215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 440376}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerDetection
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -246,7 +248,7 @@ GameObject:
   - component: {fileID: 6136884}
   - component: {fileID: 8240172}
   - component: {fileID: 2714921381939870343}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}

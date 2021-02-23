@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class KungFrogStatesAnimationSound : MonoBehaviour
 {
@@ -20,7 +21,8 @@ public class KungFrogStatesAnimationSound : MonoBehaviour
         attacking = false,
         fightStarted = false,
         detected,
-        tooClose;
+        tooClose,
+        hasBeenAttacked;
     private bool 
         grounded = false,
         onWall = false,
@@ -39,6 +41,7 @@ public class KungFrogStatesAnimationSound : MonoBehaviour
 
     private void Start()
     {
+        Physics2D.IgnoreLayerCollision(8, 9, false);
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
@@ -75,15 +78,33 @@ public class KungFrogStatesAnimationSound : MonoBehaviour
         animator.SetBool("walking", walking);
     }
 
+    private IEnumerator Flash()
+    {
+        Physics2D.IgnoreLayerCollision(8, 9, true);
+        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+        float flashAfter = 0.15f;
+        Color flashOn = Color.clear;
+        Color flashOff = renderer.color;
+        for (int i = 0; i < 5; i++)
+        {
+            renderer.color = flashOn;
+            yield return new WaitForSeconds(flashAfter);
+            renderer.color = flashOff;
+            yield return new WaitForSeconds(flashAfter);
+        }
+        Physics2D.IgnoreLayerCollision(8, 9, false);
+    }
+
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && life > 0)
         {
             other.gameObject.GetComponent<PlayerStateAnimationSound>().HandleNormalDamage();
         }
 
         if (other.gameObject.tag == "weapon" && !other.gameObject.GetComponent<Collider2D>().isTrigger)
         {
+            hasBeenAttacked = true;
             if (fightStarted)
             {
                 life--;
@@ -97,6 +118,10 @@ public class KungFrogStatesAnimationSound : MonoBehaviour
                     Destroy(gameObject, 2);
                     if (elevator != null) 
                         elevator.SetActive(true);
+                }
+                else
+                {
+                    StartCoroutine(Flash());
                 }
             }
             else

@@ -10,6 +10,12 @@ TagManager:
   - TextBoxBackground
   - TextBoxContent
   - TextBoxAuthor
+  - paper
+  - groundWall
+  - weapon
+  - hittable
+  - projectileA
+  - gravityReverse
   layers:
   - Default
   - TransparentFX
@@ -19,10 +25,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Enemy
+  - Weapon
+  - Player
+  - Glove
   - 
   - 
   - 

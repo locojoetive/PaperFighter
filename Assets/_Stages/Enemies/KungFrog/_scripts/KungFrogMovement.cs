@@ -9,7 +9,9 @@ public class KungFrogMovement : MonoBehaviour {
     public GameObject glove;
     private GameObject gloveClone = null;
 
-    public bool jump, facingRight = true;
+    public bool jump, 
+        facingRight = true,
+        hasAttackedBeforeNextJump;
     public float 
         speed,
         jumpWidth,
@@ -35,13 +37,15 @@ public class KungFrogMovement : MonoBehaviour {
     {
         
         if (state.isOnWall() || (state.isGrounded() && state.playerDetected() && !state.isPlayerTooClose() && !isFacingPlayer())) Flip();
-        if (state.isPlayerTooClose() || !state.playerDetected() && state.isFightStarted()) state.initializeJump();  
+        if (state.hasBeenAttacked || (state.isPlayerTooClose() && hasAttackedBeforeNextJump) || (!state.playerDetected() && state.isFightStarted())) state.initializeJump();  
     }
 
     private void Jump()
     {
         rb.velocity = new Vector2(jumpWidth, jumpHeigth);
         FindObjectOfType<AudioManager>().PlaySound("kfJump");
+        hasAttackedBeforeNextJump = false;
+        state.hasBeenAttacked = false;
     }
 
     void Flip()
@@ -60,7 +64,7 @@ public class KungFrogMovement : MonoBehaviour {
 
     void HandleAttack()
     {
-        if (state.isPlayerTooClose())
+        if (state.isPlayerTooClose() && hasAttackedBeforeNextJump)
         {
             state.initializeJump();
         } else if (state.playerDetected() && state.isGrounded() && Time.time > nextAttackAt)
@@ -81,6 +85,8 @@ public class KungFrogMovement : MonoBehaviour {
     {
         gloveClone = Instantiate(glove, gloveSpawn.transform.position, Quaternion.identity);
         gloveClone.transform.localScale = PointwiseMultiply(gloveClone.transform.localScale, new Vector3(facingRight ? 1F : -1F, 1F, 1F));
+        if (state.isPlayerTooClose())
+            hasAttackedBeforeNextJump = true;
     }
 
     private Vector3 PointwiseMultiply(Vector3 vector, Vector3 multiplyBy)

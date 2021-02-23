@@ -9,9 +9,9 @@ public class FinalGoal : MonoBehaviour
     private void Start()
     {
         kungFrog = FindObjectOfType<KungFrogStatesAnimationSound>();
+        animator = GetComponent<Animator>();
         if (kungFrog != null)
         {
-            animator = GetComponent<Animator>();
             isBossDone = false;
         }
     }

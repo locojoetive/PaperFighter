@@ -11,13 +11,12 @@ public class GloveScript : MonoBehaviour
         maxMagnitude,
         speed;
     private bool 
-        goStraight = false,
         exploded = false,
         facingRight;
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = FindObjectOfType<PlayerStateAnimationSound>().transform;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         GetComponent<GravityReverse>().ObjectIsAFly();
@@ -35,12 +34,11 @@ public class GloveScript : MonoBehaviour
     private void MoveGlove()
     {
         Vector3 toTarget = facingRight ? player.position - transform.position : transform.position - player.position;
-        if (!goStraight && toTarget.magnitude > maxDist)
+        if (toTarget.magnitude > maxDist)
         {
             float angle = Vector3.Angle(transform.right, toTarget);
             transform.right = Vector3.RotateTowards(transform.right, toTarget, maxRadian, maxMagnitude);
         }
-        else goStraight = true;
         rb.velocity = facingRight ? speed * transform.right : -speed * transform.right;
     }
 

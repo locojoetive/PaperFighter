@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9524930}
   - component: {fileID: 11464206}
   - component: {fileID: 11434412}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Shuriken
   m_TagString: weapon
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}

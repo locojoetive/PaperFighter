@@ -2,24 +2,30 @@
 
 public class PlayerAttack : MonoBehaviour
 {
+    private TouchField touch;
     private PlayerStateAnimationSound state;
     public Transform shurikenSpawn;
     public GameObject
         shuriken,
         aim;
-    public float maxAimRadius;
+    private float maxAimRadius = 2;
     public AttackState attackState = AttackState.DONE;
-
     private GameObject aimClone;
     private Vector2 neutralShurikenSpawnPosition;
     private Vector2 shootDirection;
 
     private bool doneAiming;
-    public float minimumShootPower,
-        maximumShootPower;
+    public float minimumShootPower = 0f,
+        maximumShootPower = 1f;
+
+
+    private float aimSpeed = 5f;
+    private Vector2 goalPosition;
+    private  Vector2 shootDirectionLocalSpace;
 
     void Start()
     {
+        touch = FindObjectOfType<TouchField>();
         state = GetComponent<PlayerStateAnimationSound>();
         attackState = AttackState.DONE;
         neutralShurikenSpawnPosition = shurikenSpawn.localPosition;
@@ -90,6 +96,67 @@ public class PlayerAttack : MonoBehaviour
     public void ShurikenPulled()
     {
         attackState = AttackState.START;
+        shootDirectionLocalSpace = Vector2.zero;
+    }
+
+
+    private void KeepAiming()
+    {
+        if (InputManager.touchActive)
+        {
+            Vector2 swipeVector = touch.vSwipe;
+            // Debug.Log("PIXELS: " + swipeVector);
+            state.Flip(swipeVector.x);
+            if (!state.facingRight)
+            {
+                swipeVector = new Vector2(-swipeVector.x, swipeVector.y);
+            }
+            if (state.upsideDown)
+            {
+                swipeVector = new Vector2(swipeVector.x, -swipeVector.y);
+            }
+            swipeVector.x = swipeVector.x / Camera.main.scaledPixelWidth;
+            swipeVector.y = swipeVector.y / (2f * Camera.main.scaledPixelHeight);
+            shootDirectionLocalSpace = swipeVector;
+            // Debug.Log("LOCAL: " + shootDirectionLocalSpace);
+        }
+        else
+        {
+            goalPosition = maxAimRadius * new Vector2(InputManager.xAxis, InputManager.yAxis).normalized;
+            state.Flip(goalPosition.x);
+            if (!state.facingRight)
+            {
+                goalPosition = new Vector2(-goalPosition.x, goalPosition.y);
+            }
+            if (state.upsideDown)
+            {
+                goalPosition = new Vector2(goalPosition.x, -goalPosition.y);
+            }
+            shootDirectionLocalSpace = Vector3.Lerp(shootDirectionLocalSpace, goalPosition, Time.deltaTime * aimSpeed);
+
+        }
+        shurikenSpawn.localPosition = shootDirectionLocalSpace.normalized * neutralShurikenSpawnPosition.magnitude;
+        aimClone.transform.localPosition = ClampLocalSpaceShootDirection();
+        shootDirection = transform.TransformVector(ClampLocalSpaceShootDirection());
+        // Debug.Log("WORLD: " + shootDirection);
+
+        CastArrow();
+    }
+
+    private void CastArrow()
+    {
+        Vector2 source = shurikenSpawn.position;
+        Vector2 dest = aimClone.transform.position;
+
+        aimClone.GetComponent<LineRenderer>().SetPosition(0, source);
+        aimClone.GetComponent<LineRenderer>().SetPosition(1, dest);
+        
+        Vector3 temp = dest - 0.3f * Normalize2D(dest - source).normalized - 0.1f * NormalVector2D(source - dest).normalized;
+        aimClone.GetComponent<LineRenderer>().SetPosition(2, temp);
+        
+        temp = dest - 0.3f * (dest - source).normalized + 0.1f * NormalVector2D(source - dest).normalized; 
+        aimClone.GetComponent<LineRenderer>().SetPosition(3, temp);
+        aimClone.GetComponent<LineRenderer>().SetPosition(4, dest);
     }
 
     // Animation Event: Last Frame of Attack_02
@@ -97,8 +164,9 @@ public class PlayerAttack : MonoBehaviour
     {
         shuriken.GetComponent<ShurikenScript>().setDirection(state.facingRight);
         GameObject shurikenClone = Instantiate(shuriken, shurikenSpawn.position, Quaternion.identity) as GameObject;
-        
-        shurikenClone.GetComponent<ShurikenScript>().SetVelocity(shootDirection);
+        Vector2 velocity = ClipBetweenMinAndMax(shootDirection);
+        Debug.Log("Shoot with: " + shootDirection.magnitude);
+        shurikenClone.GetComponent<ShurikenScript>().SetVelocity(velocity);
         shurikenSpawn.localPosition = neutralShurikenSpawnPosition;
         state.animator.SetBool("ReleaseAttack", false);
         state.audioManager.PlaySound("shurikenShoot");
@@ -106,53 +174,14 @@ public class PlayerAttack : MonoBehaviour
         state.shurikenThrown = true;
         attackState = AttackState.THROWN;
     }
-
-    private void KeepAiming()
+    private Vector2 ClampLocalSpaceShootDirection()
     {
-
-        Vector2 shootDirectionLocalSpace;
-        if (InputManager.touchActive)
-        {
-            shootDirectionLocalSpace = TouchBehaviour.swipeVector;
-            shootDirectionLocalSpace.x = shootDirectionLocalSpace.x / (.25f * Camera.main.scaledPixelWidth);
-            shootDirectionLocalSpace.y = shootDirectionLocalSpace.y / (.5f * Camera.main.scaledPixelHeight);
-        }
+        if (shootDirectionLocalSpace.magnitude > shurikenSpawn.localPosition.magnitude)
+            return shootDirectionLocalSpace;
         else
-        {
-            shootDirectionLocalSpace = new Vector2(InputManager.xAxis, InputManager.yAxis);
-        }
-        
-        shootDirectionLocalSpace = ClipBetweenMinAndMax(shootDirectionLocalSpace);
-
-        state.Flip(shootDirectionLocalSpace.x);
-        if (!state.facingRight)
-        {
-            shootDirectionLocalSpace = new Vector2(-shootDirectionLocalSpace.x, shootDirectionLocalSpace.y);
-        }
-        if (state.upsideDown)
-        {
-            shootDirectionLocalSpace = new Vector2(shootDirectionLocalSpace.x, -shootDirectionLocalSpace.y);
-        }
-
-        shurikenSpawn.localPosition = Vector3.Normalize(shootDirectionLocalSpace) * neutralShurikenSpawnPosition.magnitude;
-        aimClone.transform.localPosition = maxAimRadius * shootDirectionLocalSpace;
-
-        shootDirection = aimClone.transform.position - shurikenSpawn.position;
-
-        CastArrow();
+            return shurikenSpawn.localPosition;
     }
 
-    private void CastArrow()
-    {
-        aimClone.GetComponent<LineRenderer>().SetPosition(0, shurikenSpawn.position);
-        aimClone.GetComponent<LineRenderer>().SetPosition(1, aimClone.transform.position);
-        Vector3 temp = aimClone.transform.position - 0.3f * (Vector3)Normalize2D(aimClone.transform.position - shurikenSpawn.position)
-            - 0.1f * (Vector3)Normalize2D(NormalVector2D(shurikenSpawn.position - aimClone.transform.position));
-        aimClone.GetComponent<LineRenderer>().SetPosition(2, temp);
-        temp = aimClone.transform.position - 0.3f * (Vector3)Normalize2D(aimClone.transform.position - shurikenSpawn.position)
-            + 0.1f * (Vector3)Normalize2D(NormalVector2D(shurikenSpawn.position - aimClone.transform.position)); aimClone.GetComponent<LineRenderer>().SetPosition(3, temp);
-        aimClone.GetComponent<LineRenderer>().SetPosition(4, aimClone.transform.position);
-    }
 
     private Vector2 ClipBetweenMinAndMax(Vector2 vector)
     {

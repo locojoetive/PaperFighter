@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 4399755399578004331}
   - component: {fileID: 76709779645345067}
   - component: {fileID: 1969306797122534763}
-  - component: {fileID: 5212682752143860633}
   - component: {fileID: 1447293039}
-  m_Layer: 14
+  - component: {fileID: 5212682752143860633}
+  m_Layer: 10
   m_Name: BlobNinja
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -77,6 +77,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -100,14 +101,14 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: -1428572451713796752, guid: efa290ddceb914b49a2b97fb3e94ee14,
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 4773600122041589604, guid: efa290ddceb914b49a2b97fb3e94ee14,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.67, y: 0.68}
+  m_Size: {x: 0.68, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -198,18 +199,6 @@ MonoBehaviour:
   verticalVelocity: 0
   wallRadius: 0.2
   jumpNo: 0
---- !u!114 &5212682752143860633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: -1992524677659808393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca70cd80b42d1374daa27873901b0f26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1447293039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,10 +214,21 @@ MonoBehaviour:
   shurikenSpawn: {fileID: 8695831691934445954}
   shuriken: {fileID: 169514, guid: 5b0a101c58a65af4db136739c5e7fb86, type: 3}
   aim: {fileID: 4174451941824847598, guid: 1d7fcbe56ed3f8c42b5121b7b66c81a1, type: 3}
-  maxAimRadius: 2
   attackState: 3
-  minimumShootPower: 0.4
-  maximumShootPower: 0.8
+  minimumShootPower: 0.8
+  maximumShootPower: 1.5
+--- !u!114 &5212682752143860633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: -1992524677659808393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca70cd80b42d1374daa27873901b0f26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2696688464873461804
 GameObject:
   m_ObjectHideFlags: 0

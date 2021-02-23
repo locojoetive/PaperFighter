@@ -1,46 +1,52 @@
 ﻿using UnityEngine;
 
 public class GravityReverse : MonoBehaviour {
-    private float 
-        gravity = 9.81f,
-        currentGravity = -9.81f;
+    float regularGravity = 2;
+    float reverseGravity = -2;
+
     private Rigidbody2D rb;
     private bool upsidedown = false;
+    private bool isObjectAFly = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        if (!isObjectAFly)
+            rb.gravityScale = regularGravity;
     }
 
-    void Update()
-    {
-        if (rb) rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + currentGravity * Time.deltaTime);
-    }
     public void ReverseGravity()
     {
-        currentGravity = 3F * gravity;
         upsidedown = true;
-        if (gameObject.tag == "Player") GetComponent<PlayerStateAnimationSound>().setUpsideDown(true);
-
         Vector3 theScale = transform.localScale;
         theScale.y = -Mathf.Abs(theScale.y);
         transform.localScale = theScale;
+        if (!isObjectAFly)
+        {
+            if (gameObject.tag == "Player") GetComponent<PlayerStateAnimationSound>().setUpsideDown(true);
+            if (rb != null) rb.gravityScale = reverseGravity;
+        }
     }
 
     public void CorrectGravity()
     {
-        currentGravity = -gravity;
         upsidedown = false;
-        if (gameObject.tag == "Player") GetComponent<PlayerStateAnimationSound>().setUpsideDown(false);
-
         Vector3 theScale = transform.localScale;
         theScale.y = Mathf.Abs(theScale.y);
         transform.localScale = theScale;
+
+        if (!isObjectAFly)
+        {
+            if (gameObject.tag == "Player") GetComponent<PlayerStateAnimationSound>().setUpsideDown(false);
+            if (rb != null) rb.gravityScale = regularGravity;
+        }
     }
 
     public void ObjectIsAFly()
     {
-        currentGravity = 0;
+        rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0;
+        isObjectAFly = true;
     }
 
     public bool isUpsidedown()
@@ -50,6 +56,6 @@ public class GravityReverse : MonoBehaviour {
 
     public float getGravity()
     {
-        return currentGravity;
+        return rb.gravityScale;
     }
 }

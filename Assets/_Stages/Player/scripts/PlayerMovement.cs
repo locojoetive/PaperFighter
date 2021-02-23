@@ -41,13 +41,14 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = Vector3.zero;
         }
         rb.velocity = new Vector2(state.horizontalSpeed * walkingSpeed, rb.velocity.y);
-        Jump();
+        if (!InputManager.touchActive) Jump();
     }
 
-    private void Jump()
+    public void Jump()
     {
         if (InputManager.jump && state.jumpNo < 2)
         {
+            Debug.Log("OK!");
             if (!state.wallGrabbing)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpHeight);

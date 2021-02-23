@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 11492662}
   - component: {fileID: 11457158}
   - component: {fileID: 11491610}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Zoys
   m_TagString: hittable
   m_Icon: {fileID: 0}
@@ -53,6 +53,8 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -195,8 +197,7 @@ MonoBehaviour:
   playerDetection: {fileID: 401314}
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 16384
-  life: 3
+    m_Bits: 1024
 --- !u!1 &181482
 GameObject:
   m_ObjectHideFlags: 0
