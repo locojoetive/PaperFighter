@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Runtime.InteropServices;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 // This is a Singleton
@@ -7,7 +8,6 @@ public class GameManager : MonoBehaviour
     private static GameManager instance = null;
     public AudioManager audioManager;
     public static bool paused;
-
 
     void Awake()
     {
@@ -40,9 +40,8 @@ public class GameManager : MonoBehaviour
         StartCoroutine(ActivateControlsIn(1F));
         FindObjectOfType<StageManager>().OnLevelFinishedLoading(scene);
         FindObjectOfType<TouchField>().OnLevelFinishedLoading();
-        FindObjectOfType<AudioManager>().OnLevelFinishedLoading();
+        FindObjectOfType<AudioManager>().OnLevelFinishedLoading(scene);
         FindObjectOfType<PlayThemes>().OnLevelFinishedLoading();
-        FindObjectOfType<UIManager>().OnLevelFinishedLoading();
         FindObjectOfType<EnableHUDOnStage>().OnLevelFinishedLoading();
         FindObjectOfType<FollowPlayer>().OnLevelFinishedLoading();
     }

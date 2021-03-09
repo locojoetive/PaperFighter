@@ -2,7 +2,6 @@
 
 public class FigoStatesAnimationSound : MonoBehaviour {
     private Transform player;
-    public AudioClip fire;
     public Transform playerDetector;
     private Animator animator;
     public bool
@@ -61,11 +60,13 @@ public class FigoStatesAnimationSound : MonoBehaviour {
 
     internal void triggerAttack()
     {
+        FindObjectOfType<AudioManager>().PlaySound("fire", .5f);
         attacking = true;
     }
 
     internal void DestroyFigo()
     {
+        FindObjectOfType<AudioManager>().StopSound("fire");
         Destroy(gameObject);
     }
 }

@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
 
+
 public class ShowControls : MonoBehaviour
 {
+    [SerializeField] private GameObject mobile;
+    [SerializeField] private GameObject keyboard;
 
     void Start()
     {
-        Transform[] children = transform.GetComponentsInChildren<Transform>();
-        Transform touch = System.Array.Find(children, child => child.name == "Touch");
-        Transform pc = System.Array.Find(children, child => child.name == "PC");
-
-        touch.gameObject.SetActive(InputManager.touchActive);
-        pc.gameObject.SetActive(!InputManager.touchActive);
+        mobile.SetActive(InputManager.touchActive);
+        keyboard.SetActive(!InputManager.touchActive);
     }
 }

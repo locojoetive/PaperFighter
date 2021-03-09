@@ -23,13 +23,13 @@ public class InputManager : MonoBehaviour
         yAxis;
     TouchField touch;
     FloatingJoystick joystick;
-    public static bool gamePadActive;
     public static bool touchActive;
 
     void Start()
     {
         touch = FindObjectOfType<TouchField>(true);
         joystick = FindObjectOfType<FloatingJoystick>(true);
+
     }
 
     private void Update()
@@ -47,16 +47,12 @@ public class InputManager : MonoBehaviour
     private void HandleInputs()
     {
         // Decide which input device to listen
-        if (!touchActive && (Input.touches.Length > 0 || SystemInfo.operatingSystem.Contains("Android")))
+        if (Input.touches.Length > 0)
         {
             touchActive = true;
         }
-        else if (!gamePadActive && JoyPadHandler.getActivity())
-        {
-            gamePadActive = true;
-        }
+
         KeyBoardHandler.active = !touchActive;
-        JoyPadHandler.active = KeyBoardHandler.active;
 
         // Listen to active input device
         if (touchActive)
@@ -67,17 +63,12 @@ public class InputManager : MonoBehaviour
         {
             HandleKeyBoardInputs();
         }
-        else if (JoyPadHandler.active)
-        {
-            HandleGamePadInputs();
-        }
     }
 
     private void ResetKeys()
     {
         touchActive = false;
         KeyBoardHandler.active = false;
-        JoyPadHandler.active = false;
 
         xAxis = 0F;
         yAxis = 0F;
@@ -115,23 +106,6 @@ public class InputManager : MonoBehaviour
         reset = KeyBoardHandler.reset;
     }
 
-    private void HandleGamePadInputs()
-    {
-        xAxis = JoyPadHandler.xAxis;
-        yAxis = JoyPadHandler.yAxis;
-        left = JoyPadHandler.left;
-        up = JoyPadHandler.up;
-        down = JoyPadHandler.down;
-        right = JoyPadHandler.right;
-        action = JoyPadHandler.action;
-        actionContinuous = JoyPadHandler.actionContinuous;
-        actionRelease = JoyPadHandler.actionRelease;
-        jump = JoyPadHandler.jump;
-        jumpContinuous = JoyPadHandler.jumpContinuous;
-        jumpRelease = JoyPadHandler.jumpRelease;
-        escape = JoyPadHandler.escape;
-        confirm = JoyPadHandler.confirm;
-    }
 
     private void HandleTouchInputs()
     {
@@ -143,8 +117,8 @@ public class InputManager : MonoBehaviour
         actionRelease = touch.swipeRelease;
         confirm = touch.confirm;
 
-        xAxis = joystick.Horizontal;
-        yAxis = joystick.Vertical;
+        xAxis = joystick.xAxis;
+        // yAxis = joystick.Vertical;
         left = joystick.left;
         up = joystick.up;
         down = joystick.down;

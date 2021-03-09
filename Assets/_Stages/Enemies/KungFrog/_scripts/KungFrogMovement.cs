@@ -4,6 +4,7 @@ public class KungFrogMovement : MonoBehaviour {
 
     private Rigidbody2D rb;
     private KungFrogStatesAnimationSound state;
+    private Transform player;
 
     public Transform gloveSpawn;
     public GameObject glove;
@@ -18,8 +19,10 @@ public class KungFrogMovement : MonoBehaviour {
         jumpHeigth,
         nextAttackAfter = 2.5f,
         nextAttackAt = 0F;
+    private bool initPlunge;
 
     void Start () {
+        player = FindObjectOfType<PlayerAttack>().transform;
         rb = GetComponent<Rigidbody2D>();
         state = GetComponent<KungFrogStatesAnimationSound>();
     }
@@ -37,11 +40,22 @@ public class KungFrogMovement : MonoBehaviour {
     {
         
         if (state.isOnWall() || (state.isGrounded() && state.playerDetected() && !state.isPlayerTooClose() && !isFacingPlayer())) Flip();
-        if (state.hasBeenAttacked || (state.isPlayerTooClose() && hasAttackedBeforeNextJump) || (!state.playerDetected() && state.isFightStarted())) state.initializeJump();  
+        if (state.hasBeenAttacked || (state.isPlayerTooClose() && hasAttackedBeforeNextJump) || (!state.playerDetected() && state.isFightStarted())) state.initializeJump();
+        
+        
+        if (!state.isGrounded() && !initPlunge && Mathf.Abs(transform.position.x - player.position.x) < 0.5f)
+        {
+            Debug.Log(transform.position.x - player.position.x);
+            initPlunge = true;
+            rb.velocity = Vector2.zero;
+        }
+        if (state.isGrounded())
+            initPlunge = false;
     }
 
     private void Jump()
     {
+        Debug.Log("JUUUMP");
         rb.velocity = new Vector2(jumpWidth, jumpHeigth);
         FindObjectOfType<AudioManager>().PlaySound("kfJump");
         hasAttackedBeforeNextJump = false;

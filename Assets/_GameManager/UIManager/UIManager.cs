@@ -8,8 +8,7 @@ public class UIManager : MonoBehaviour
     public GameObject overlay;
     public GameObject pauseMenu;
     public GameObject resumeButton;
-    public GameObject textBox;
-
+    
     void Awake()
     {
         overlay.SetActive(false);
@@ -33,7 +32,7 @@ public class UIManager : MonoBehaviour
     public void OnPause()
     {
         paused = true;
-        if (!TouchBehaviour.active) 
+        if (!InputManager.touchActive) 
             EventSystem.current.SetSelectedGameObject(resumeButton);
         overlay.SetActive(true);
         pauseMenu.SetActive(true);
@@ -60,10 +59,5 @@ public class UIManager : MonoBehaviour
     {
         OnResume();
         StageManager.ExitStage();
-    }
-
-    public void OnLevelFinishedLoading()
-    {
-        textBox.SetActive(StageManager.onIntro || StageManager.onOutro);
     }
 }

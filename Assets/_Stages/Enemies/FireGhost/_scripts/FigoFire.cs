@@ -6,7 +6,8 @@ public class FigoFire : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            other.GetComponentInParent<PlayerStateAnimationSound>().HandleBurnDamage();
+            PlayerStateAnimationSound player = other.GetComponentInParent<PlayerStateAnimationSound>();
+            player.HandleBurnDamage();
         }
         return other;
     }

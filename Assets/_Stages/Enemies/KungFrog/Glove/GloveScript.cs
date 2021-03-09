@@ -51,6 +51,7 @@ public class GloveScript : MonoBehaviour
 
         if (!exploded)
         {
+            StartCoroutine(FindObjectOfType<CameraShake>().Shake(.5f, .05f));
             animator.SetTrigger("explode");
             FindObjectOfType<AudioManager>().PlaySound("explosion");
             transform.localScale *= 2F;
@@ -64,9 +65,10 @@ public class GloveScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.tag == "Player")
         {
-            player.GetComponent<PlayerStateAnimationSound>().HandleBurnDamage();
+            PlayerStateAnimationSound player = collision.GetComponentInParent<PlayerStateAnimationSound>();
+            player.HandleBurnDamage();
         }
     }
 }

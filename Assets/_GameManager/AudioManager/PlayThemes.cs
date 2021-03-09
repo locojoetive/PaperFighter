@@ -57,12 +57,13 @@ public class PlayThemes : MonoBehaviour
                 audioManager.PlayTheme("before_boss");
                 break;
             case SceneType.IN_BOSS:
+                audioManager.FadeOutTheme("before_boss");
                 audioManager.PlayTheme("in_boss");
                 break;
             case SceneType.AFTER_BOSS:
                 if (!victory)
                 {
-                    audioManager.FadeOutOtherThemes();
+                    audioManager.FadeOutTheme("in_boss");
                     audioManager.PlaySound("victory");
                     victory = true;
                 }
@@ -78,13 +79,14 @@ public class PlayThemes : MonoBehaviour
     public void OnLevelFinishedLoading()
     {
         kungFrog = FindObjectOfType<KungFrogStatesAnimationSound>();
-        if (StageManager.onTitle || StageManager.onControls|| StageManager.onIntro)
+        if (StageManager.onTitle || StageManager.onIntro)
         {
             sceneType = SceneType.INTRO;
         }
         else if (kungFrog != null)
         {
             sceneType = SceneType.BEFORE_BOSS;
+            victory = false;
         }
         else if (StageManager.onStage)
         {

@@ -75,5 +75,6 @@ public class KeyBoardHandler : MonoBehaviour
             : up
                 ? 1F
                 : -1F;
+
     }
 }

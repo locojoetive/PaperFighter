@@ -19,18 +19,15 @@ using System.IO;
 public class ExportWebGL : MonoBehaviour
 {
     private static string[] levelsToPack = new string[] {
-        "Assets/Scenes/pf_stage_1.unity",
-        /*
         "Assets/Scenes/pf_title.unity",
-        "Assets/Scenes/pf_controls.unity",
         "Assets/Scenes/pf_intro.unity",
+        "Assets/Scenes/pf_stage_1.unity",
         "Assets/Scenes/pf_stage_2.unity",
         "Assets/Scenes/pf_stage_3.unity",
         "Assets/Scenes/pf_stage_4.unity",
         "Assets/Scenes/pf_stage_5.unity",
         "Assets/Scenes/pf_credits.unity",
         "Assets/Scenes/pf_outro.unity",
-        */
     };
 
     private static string buildLogFile = null;
@@ -83,6 +80,10 @@ public class ExportWebGL : MonoBehaviour
         PlayerSettings.WebGL.memorySize = 256;
         PlayerSettings.WebGL.emscriptenArgs = " -s TOTAL_STACK=1MB " + " -s ERROR_ON_UNDEFINED_SYMBOLS=0 " + emscriptenLinkerFlags;
         PlayerSettings.WebGL.compressionFormat = compressionFormat;
+        PlayerSettings.WebGL.decompressionFallback = true;
+        PlayerSettings.WebGL.dataCaching = true;
+        PlayerSettings.WebGL.wasmArithmeticExceptions = WebGLWasmArithmeticExceptions.Ignore;
+
         PlayerSettings.defaultScreenWidth = 960;
         PlayerSettings.defaultScreenWidth = 540;
 

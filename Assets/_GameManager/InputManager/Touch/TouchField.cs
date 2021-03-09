@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 
 
 public class TouchField : MonoBehaviour
@@ -14,7 +12,7 @@ public class TouchField : MonoBehaviour
     [HideInInspector]
     public Vector2 vSwipe;
     private Vector2 vNeutralScreenPosition;
-    private bool useInGame;
+    private bool useInGameControls;
     private float tSwipeCancledAt;
     public float tSwipeCancledAfter;
     public float fSwipeRadius;
@@ -35,7 +33,8 @@ public class TouchField : MonoBehaviour
         actionInProgress = false;
 
     private int fingerId = -1;
-    private Touch[] touches = new Touch[0];
+    public Vector2 fingerPosition;
+    private Touch[] oldTouches = new Touch[0];
 
     protected virtual void Start()
     {
@@ -47,25 +46,24 @@ public class TouchField : MonoBehaviour
 
         if (canvas == null)
             Debug.LogError("The Joystick is not placed inside a canvas");
-
-
+        
         OnLevelFinishedLoading();
     }
 
     private void Update()
     {
-        useInGame = StageManager.onStage && !UIManager.paused;
-        // re-check screen size
+        useInGameControls = StageManager.onStage && !UIManager.paused;
         vNeutralScreenPosition = .5f * new Vector2(Camera.main.scaledPixelWidth, Camera.main.scaledPixelHeight);
-
-        if (useInGame) HandleAction();
-        else if (confirm) confirm = false;
+        
+        if (!useInGameControls) confirm = ATouchBegan();
+        else HandleAction();
+        oldTouches = Input.touches;
     }
 
     private void HandleAction()
     {
+        // DebugTouches();
         HandleTouchInputsInGame();
-
 
         if (fingerDown)
         {
@@ -75,51 +73,45 @@ public class TouchField : MonoBehaviour
         }
 
         bool jumping = jump || jumpContinuous ||jumpRelease;
-        if (actionInProgress && !jumping && inRadius && (fingerDown && !inTime || !fingerDown && inTime))
+        if (actionInProgress && !fingerDown && !jumping && inRadius)
         {
             jump = true;
-            Debug.Log("0_JUMP!");
         }
         else if (jump)
         {
             jump = false;
             jumpContinuous = true;
-            Debug.Log("1_JUMP!");
-            player.Jump();
+            // player.Jump();
         } else if (jumpContinuous)
         {
             jump = false;
             jumpContinuous = false;
             jumpRelease = true;
-            Debug.Log("2_JUMP!");
-        } else if (jumpRelease)
+        }
+        else if (jumpRelease)
         {
             jump = false;
             jumpContinuous = false;
             jumpRelease = false;
             actionInProgress = false;
-            Debug.Log("3_JUMP!");
         }
 
         bool swiping = swipe || swipeContinuous;
 
-        if (actionInProgress && fingerDown && !inRadius && !swiping)
+        if (actionInProgress && fingerDown && !swiping && !jumping && !inRadius)
         {
             swipe = true;
-            Debug.Log("0_SWIPE!");
         }
         else if (swipe)
         {
             swipe = false;
             swipeContinuous = true;
-            Debug.Log("1_SWIPE!");
         }
-        else if (swipeContinuous)
+        else if (swipeContinuous && !fingerDown)
         {
             swipe = false;
             swipeContinuous = false;
             swipeRelease = true;
-            Debug.Log("2_SWIPE!");
         }
         else if (swipeRelease)
         {
@@ -127,7 +119,6 @@ public class TouchField : MonoBehaviour
             swipeContinuous = false;
             swipeRelease = false;
             actionInProgress = false;
-            Debug.Log("3_SWIPE!");
         }
     }
 
@@ -138,7 +129,7 @@ public class TouchField : MonoBehaviour
         fingerDown = true;
         actionInProgress = true;
         fingerId = touch.fingerId;
-
+        fingerPosition = touch.position;
         tSwipeCancledAt = Time.time + tSwipeCancledAfter;
         vSwipeStart = touch.position;
         vSwipe = Vector2.zero;
@@ -147,22 +138,16 @@ public class TouchField : MonoBehaviour
     }
     public void OnDrag(Touch touch)
     {
-        
         vSwipe = touch.position - vSwipeStart;
+        fingerPosition = touch.position;
     }
 
     public virtual void OnPointerUp(Touch touch)
     {
         vSwipe = touch.position - vSwipeStart;
-
         fingerDown = false;
         fingerId = -1;
-    }
-
-    public void OnLevelFinishedLoading()
-    {
-        useInGame = StageManager.onStage;
-        player = FindObjectOfType<PlayerMovement>();
+        fingerPosition = touch.position;
     }
 
     private void HandleTouchInputsInGame()
@@ -170,27 +155,38 @@ public class TouchField : MonoBehaviour
         foreach (Touch touch in Input.touches)
         {
 
-            if (touchBegan(touch) && touch.position.x >= vNeutralScreenPosition.x && fingerId == -1)
+            if (fingerId == -1 && touchBegan(touch) && touch.position.x >= vNeutralScreenPosition.x)
             {
                 OnPointerDown(touch);
             }
-            else if (touchKept(touch) && touch.fingerId == fingerId)
+            else if (fingerId == touch.fingerId && touchKept(touch))
             {
                 OnDrag(touch);
             }
         }
-        foreach (Touch touch in touches) {
-            if (touchEnded(touch) && touch.fingerId == fingerId)
+        foreach (Touch touch in oldTouches) {
+            if (touch.fingerId == fingerId && touchEnded(touch))
                 OnPointerUp(touch);
         }
-        touches = Input.touches;
+    }
+
+    private bool ATouchBegan()
+    {
+        foreach (Touch t in Input.touches)
+        {
+            if (touchBegan(t))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private bool touchBegan(Touch touch)
     {
-        foreach (Touch t in touches)
+        foreach (Touch oldTouch in oldTouches)
         {
-            if (t.fingerId == touch.fingerId)
+            if (oldTouch.fingerId == touch.fingerId)
             {
                 return false;
             }
@@ -200,7 +196,7 @@ public class TouchField : MonoBehaviour
 
     private bool touchKept(Touch touch)
     {
-        foreach (Touch t in touches)
+        foreach (Touch t in oldTouches)
         {
             if (t.fingerId == touch.fingerId)
             {
@@ -220,5 +216,11 @@ public class TouchField : MonoBehaviour
             }
         }
         return true;
+    }
+
+    public void OnLevelFinishedLoading()
+    {
+        useInGameControls = StageManager.onStage;
+        player = FindObjectOfType<PlayerMovement>();
     }
 }

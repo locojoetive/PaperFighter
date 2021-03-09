@@ -4,24 +4,31 @@ using UnityEngine.SceneManagement;
 public class FadeInAndOutCamera : MonoBehaviour
 {
     private Animator animator;
+    private AudioManager audioManager;
     private SpriteRenderer black;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         black = GetComponent<SpriteRenderer>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     private System.Collections.IEnumerator FadeOut(string sceneName)
     {
         animator.SetBool("Fade", true);
         GameManager.paused = true;
-        yield return new WaitUntil(() => black.color.a == 1);
+        Sound currentTheme = audioManager.currentTheme;
+        bool playSameTheme = audioManager.PlaySameTheme(sceneName);
+        yield return new WaitUntil(() => {
+            return black.color.a == 1 &&  (playSameTheme || currentTheme == null || !currentTheme.source.isPlaying);
+        });
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 
     public void FadeToNextScene(string sceneName)
     {
+        audioManager.FadeOutTheme(sceneName);
         StartCoroutine(FadeOut(sceneName));
     }
 

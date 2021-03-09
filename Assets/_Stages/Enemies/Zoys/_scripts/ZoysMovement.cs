@@ -12,7 +12,7 @@ public class ZoysMovement : MonoBehaviour {
     private Vector2 origin;
     private Vector3 velocity;
     private float
-        abovePlayerFactor = 4F,
+        abovePlayerFactor = 7F,
         freezeFor = 3F,
         radius = 15F,
         unfreezeAt = 0.0f;
@@ -27,7 +27,8 @@ public class ZoysMovement : MonoBehaviour {
 
     void Update () {
         HandleState();
-        HandleMovement();
+        if (life > 0)
+            HandleMovement();
 	}
 
     private void HandleState()
@@ -49,7 +50,6 @@ public class ZoysMovement : MonoBehaviour {
             Vector3 moveBack = ((Vector3) origin - transform.position) * Time.deltaTime;
             transform.position += moveBack;
         }
-        Debug.Log(transform.position);
     }
 
     public bool isPlayerDetected()

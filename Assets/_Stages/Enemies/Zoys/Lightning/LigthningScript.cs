@@ -8,7 +8,6 @@ public class LigthningScript : MonoBehaviour {
     private GameObject player;
     private bool exploded = false;
 
-    public AudioClip expl;
     public float speed;
     public Vector3 relativePos;
     private bool inRange = false;
@@ -35,9 +34,7 @@ public class LigthningScript : MonoBehaviour {
             } else rb.velocity = -transform.up * speed;
         }
     }
-        
-    
-	
+
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Player")
@@ -51,13 +48,13 @@ public class LigthningScript : MonoBehaviour {
             }
         }
         else if (other.gameObject.tag != "gravityReverse") {
+            StartCoroutine(FindObjectOfType<CameraShake>().Shake(.5f, .2f));
             animator.SetTrigger("Explode");
-            source.PlayOneShot(expl, 1F);
+            FindObjectOfType<AudioManager>().PlaySound("explosion");
             Destroy(rb);
             exploded = true;
         }
     }
-    
 
     void Explode()
     {

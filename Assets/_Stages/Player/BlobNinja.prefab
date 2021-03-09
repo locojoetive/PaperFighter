@@ -101,14 +101,14 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 4773600122041589604, guid: efa290ddceb914b49a2b97fb3e94ee14,
+  m_SortingOrder: 30
+  m_Sprite: {fileID: -4677609165139703471, guid: 3214480965f69484f989607f60151004,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.68, y: 0.64}
+  m_Size: {x: 0.63, y: 0.66}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -161,7 +161,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 071ed74b485bef94db3b861548bff595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkingSpeed: 8
+  damping: 8
+  walkDamping: 0.48
+  shootDamping: 0.5
+  shootDampingMidAir: 0.4
+  stopDamping: 1
+  walkingAcceleration: 0.2
+  maxVelocity: 10
 --- !u!114 &1969306797122534763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,6 +199,7 @@ MonoBehaviour:
   shurikenThrown: 1
   upsideDown: 0
   wallGrabbing: 0
+  invincible: 0
   freezeUntil: 0
   groundRadius: 0.2
   horizontalSpeed: 0
@@ -215,8 +222,8 @@ MonoBehaviour:
   shuriken: {fileID: 169514, guid: 5b0a101c58a65af4db136739c5e7fb86, type: 3}
   aim: {fileID: 4174451941824847598, guid: 1d7fcbe56ed3f8c42b5121b7b66c81a1, type: 3}
   attackState: 3
-  minimumShootPower: 0.8
-  maximumShootPower: 1.5
+  maximumShootPower: 3.5
+  keyboardAimSpeed: 10
 --- !u!114 &5212682752143860633
 MonoBehaviour:
   m_ObjectHideFlags: 0

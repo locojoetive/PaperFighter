@@ -62,7 +62,6 @@ public class PlayCredits : MonoBehaviour
 
         startingLineY = -Camera.main.scaledPixelHeight;
 
-
         Vector2 previousPosition = Vector2.up * startingLineY;
         foreach (Credit credit in credits)
         {
@@ -86,11 +85,9 @@ public class PlayCredits : MonoBehaviour
             creditObjects.Add(currentCredit);
             previousPosition -= Vector2.up * (currentText.preferredHeight + spaceBetweenCredits);
         }
-
         finishingLineY = -previousPosition.y;
-        
         thankYou.GetComponent<RectTransform>().anchoredPosition = previousPosition;
-        backgroundImage.offsetMin = new Vector2(backgroundImage.offsetMin.x, previousPosition.y - speed);
+        backgroundImage.offsetMin = new Vector2(backgroundImage.offsetMin.x, previousPosition.y - speed * Time.deltaTime);
     }
 
     private void PlayCreditsAnimation()
@@ -102,7 +99,7 @@ public class PlayCredits : MonoBehaviour
     {
         if (GetComponent<RectTransform>().anchoredPosition.y < finishingLineY)
         {
-            if (Input.touchCount > 0) GetComponent<RectTransform>().anchoredPosition += Vector2.up * 20F * speed;
+            if (Input.touchCount > 0 || Input.GetKey(KeyCode.Space)) GetComponent<RectTransform>().anchoredPosition += Vector2.up * 20F * speed;
             else GetComponent<RectTransform>().anchoredPosition += Vector2.up * speed;
         }
         else if (!creditsHaveEnded)

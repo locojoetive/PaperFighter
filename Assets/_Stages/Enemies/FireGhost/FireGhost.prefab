@@ -127,7 +127,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.06857809}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.36310163}
+    pivot: {x: 0.48672077, y: 0.25101185}
     oldSize: {x: 0.45, y: 0.48}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -180,12 +180,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eef6fee7c1a97f54eb04cd0f5641c797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fire: {fileID: 8300000, guid: d9802ae43ac59bc41afbaf1f9de42229, type: 3}
   playerDetector: {fileID: 440376}
   detected: 0
   attacking: 0
   dead: 0
-  detectionRadius: 10
+  detectionRadius: 6
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -248,7 +247,7 @@ GameObject:
   - component: {fileID: 6136884}
   - component: {fileID: 8240172}
   - component: {fileID: 2714921381939870343}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}

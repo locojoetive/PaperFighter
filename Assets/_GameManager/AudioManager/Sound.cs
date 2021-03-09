@@ -19,21 +19,18 @@ public class Sound
 
     [HideInInspector]
     public bool isFadingOut = false;
-    private float fadeOutTargetVolume = .1f;
+    private float fadeOutTargetVolume = .05f;
     private float fadeOutSpeed = 1F;
 
     public System.Collections.IEnumerator FadeOut()
     {
         isFadingOut = true;
-        while (source.volume > fadeOutTargetVolume)
-        {
+        yield return new WaitUntil(() => {
             source.volume -= fadeOutSpeed * Time.deltaTime;
-            yield return null;
-        }
+            return source.volume < fadeOutTargetVolume;
+        });
         source.Stop();
         source.volume = volume;
-        yield return new WaitForSeconds(0F);
-
         isFadingOut = false;
     }
 }

@@ -9,7 +9,6 @@ public class StageManager : MonoBehaviour
         hasTextSceneEnded,
         paused = false,
         onTitle,
-        onControls,
         onIntro,
         onStage,
         onOutro,
@@ -30,7 +29,6 @@ public class StageManager : MonoBehaviour
     private void Update()
     {
         ProtocolOnTitle();
-        ProtocolOnControls();
         ProtocolOnIntro();
         ProtocolOnStage();
         ProtocolOnOutro();
@@ -45,29 +43,11 @@ public class StageManager : MonoBehaviour
             if (InputManager.confirm)
             {
                 InputManager.confirm = false;
-                fader.FadeToNextScene("pf_controls");
-            }
-        }
-
-    }
-
-    private void ProtocolOnControls()
-    {
-        if (onControls)
-        {
-            if (InputManager.escape)
-            {
-                InputManager.escape = false;
-                fader.FadeToNextScene("pf_title");
-            }
-            else if (InputManager.confirm)
-            {
-                InputManager.confirm = false;
                 fader.FadeToNextScene("pf_intro");
             }
         }
-    }
 
+    }
 
     private void ProtocolOnIntro()
     {
@@ -118,7 +98,6 @@ public class StageManager : MonoBehaviour
     {
         activeScene = scene.name;
         onTitle = activeScene.Contains("title");
-        onControls = activeScene.Contains("controls");
         onIntro = activeScene.Contains("intro");
         onStage = activeScene.Contains("stage");
         onOutro = activeScene.Contains("outro");

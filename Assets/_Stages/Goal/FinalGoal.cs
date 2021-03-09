@@ -3,24 +3,20 @@
 public class FinalGoal : MonoBehaviour
 {
     KungFrogStatesAnimationSound kungFrog;
-    bool isBossDone = true;
+    bool isBossDone = false;
     Animator animator;
 
     private void Start()
     {
         kungFrog = FindObjectOfType<KungFrogStatesAnimationSound>();
         animator = GetComponent<Animator>();
-        if (kungFrog != null)
-        {
-            isBossDone = false;
-        }
     }
 
     private void Update()
     {
-        if (kungFrog != null && !isBossDone)
+        if (kungFrog == null)
         {
-            isBossDone = kungFrog.life == 0;
+            isBossDone = true;
             animator.SetBool("isBossDone", isBossDone);
         }
     }

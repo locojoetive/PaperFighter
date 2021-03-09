@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class PlayerStateAnimationSound : MonoBehaviour {
 
@@ -25,8 +26,9 @@ public class PlayerStateAnimationSound : MonoBehaviour {
         recovered = true,
         shurikenThrown = true,
         upsideDown = false,
-        wallGrabbing;
-
+        wallGrabbing,
+        invincible;
+    private bool crit;
     public float
         freezeUntil = 0.0f,
         groundRadius = 0.2f,
@@ -43,7 +45,7 @@ public class PlayerStateAnimationSound : MonoBehaviour {
     private int LifeCount = 3;
     private float 
         recovery = 0.0f,
-        recoveryTime = 2F;
+        recoverAfter = 2F;
     private float jumpButtonInactiveUntil = 0F;
     private bool jumpButton = false;
     private float jumpButtonInactiveFor = 0.07f;
@@ -81,18 +83,11 @@ public class PlayerStateAnimationSound : MonoBehaviour {
             jumping = false;
         }
 
-        jumpNo = jumping 
-            ? jumpNo
-            : !grounded && !wallGrabbing && jumpNo == 0
-                ? 1
-                : grounded || wallGrabbing
-                    ? 0
-                    : jumpNo;
 
         wallGrabbing = !grounded &&
             onWall &&
             commitToDirection;
-        move = shurikenThrown && freezeUntil < Time.time && recovered && (!hit && recovered);
+        move = shurikenThrown && freezeUntil < Time.time && recovered && !hit;
     }
 
 
@@ -113,42 +108,54 @@ public class PlayerStateAnimationSound : MonoBehaviour {
 
     public void HandleBurnDamage()
     {
-
-        ResetReleaseWhenHit();
-        if (recovered && !hit)
+        if (!invincible)
         {
-            move = false;
-            animator.SetTrigger("Burned");
-            HandleDamage();
-            audioManager.PlaySound("fireDamage");
+            ResetReleaseWhenHit();
+            if (recovered && !hit)
+            {
+                StartCoroutine(FindObjectOfType<CameraShake>().Shake(.5f, .05f));
+                move = false;
+                animator.SetTrigger("Burned");
+                HandleDamage();
+                audioManager.PlaySound("fireDamage");
+            }
         }
     }
 
     public void Electrified()
     {
-        ResetReleaseWhenHit();
-        if (recovered && !hit)
+        if (!invincible)
         {
-            move = false;
-            animator.SetTrigger("Electrified");
-            audioManager.PlaySound("lightningDamage");
-            HandleDamage();
+            ResetReleaseWhenHit();
+            if (recovered && !hit)
+            {
+                StartCoroutine(FindObjectOfType<CameraShake>().Shake(.25f, .2f));
+                move = false;
+                animator.SetTrigger("Electrified");
+                audioManager.PlaySound("lightningDamage");
+                HandleDamage();
+            }
         }
     }
 
     public void HandleNormalDamage()
     {
-        ResetReleaseWhenHit();
-        if (recovered && !hit)
+        if (!invincible)
         {
-            move = false;
-            animator.SetTrigger("Crit");
-            HandleDamage();
-            audioManager.PlaySound("shurikenSpawn");
+            ResetReleaseWhenHit();
+            if (recovered && !hit)
+            {
+                StartCoroutine(FindObjectOfType<CameraShake>().Shake(.5f, .05f));
+                move = false;
+                animator.SetTrigger("Crit");
+                HandleDamage();
+                audioManager.PlaySound("shurikenSpawn");
+            }
         }
     }
     public void HandleDamage()
     {
+        GetComponent<PlayerAttack>().abortAttack();
         rb.velocity = Vector2.zero;
         rb.velocity = new Vector3(facingRight ? -5 : 5, 2, 0);
         animator.SetBool("Hit", true);
@@ -165,13 +172,15 @@ public class PlayerStateAnimationSound : MonoBehaviour {
         }
     }
 
-    public void Recovery()
+    private void Recovery()
     {
         if (hit && grounded)
         {
             hit = false;
             recovered = false;
-            recovery = Time.time + recoveryTime;
+            StartCoroutine(FindObjectOfType<CameraShake>().Shake(.1f, .1f));
+            StartCoroutine(Flash());
+            recovery = Time.time + recoverAfter;
         }
         if (!recovered && Time.time > recovery)
         {
@@ -210,7 +219,7 @@ public class PlayerStateAnimationSound : MonoBehaviour {
         freezeUntil = Time.time + time;
     }
 
-    internal void Flip(float horizontal)
+    internal bool Flip(float horizontal)
     {
         if (horizontal > 0 && !facingRight || horizontal < 0 && facingRight)
         {
@@ -218,7 +227,9 @@ public class PlayerStateAnimationSound : MonoBehaviour {
             Vector3 theScale = transform.localScale;
             theScale.x *= -1;
             transform.localScale = theScale;
+            return true;
         }
+        return false;
     }
 
     public void ResetReleaseWhenHit()
@@ -226,5 +237,21 @@ public class PlayerStateAnimationSound : MonoBehaviour {
         shurikenThrown = true;
         animator.SetBool("Aiming", false);
         animator.SetBool("ReleaseAttack", false);
+    }
+
+    private IEnumerator Flash()
+    {
+        invincible = true;
+        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+        Color flashOn = Color.clear;
+        Color flashOff = renderer.color;
+        for (int i = 0; i < 20; i++)
+        {
+            renderer.color = flashOn;
+            yield return new WaitForSeconds(.1f);
+            renderer.color = flashOff;
+            yield return new WaitForSeconds(.1f);
+        }
+        invincible = false;
     }
 }

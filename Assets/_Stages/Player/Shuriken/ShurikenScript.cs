@@ -42,6 +42,7 @@ public class ShurikenScript : MonoBehaviour {
         }
         else if ((other.gameObject.tag == "projectileA" || other.gameObject.tag == "hittable") && !damaged)
         {
+            StartCoroutine(FindObjectOfType<CameraShake>().Shake(.1f, .1f));
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             Destroy(gameObject);
         }

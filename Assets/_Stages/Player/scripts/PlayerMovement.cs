@@ -9,8 +9,22 @@ public class PlayerMovement : MonoBehaviour
         wallJumpFrame = 0.2f;
     private int
         jumpHeight = 10;
-    public int walkingSpeed = 8;
     
+    private float fRememberJumpPressedTime = 0.2f;
+    private float fRememberReplenishJumpsTime = 0.2f;
+    private float fRememberJumpPressed;
+    private float fRememberReplenishJumps;
+    private bool bReplenishJumps = false;
+    private bool bJumping = false;
+    
+    public float damping;
+    [Range(0.0f, 1.0f)] public float walkDamping;
+    [Range(0.0f, 1.0f)] public float shootDamping;
+    [Range(0.0f, 1.0f)] public float shootDampingMidAir;
+    [Range(0.0f, 1.0f)] public float stopDamping;
+    public float walkingAcceleration;
+    public float maxVelocity;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -19,9 +33,27 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (state.wallGrabbing && state.move)
+        {
+            rb.isKinematic = true;
+            rb.velocity = Vector2.zero;
+        }
+        else
+        {
+            rb.isKinematic = false;
+        }
         if (state.move)
         {
             HandleMovement();
+        } else if (!state.shurikenThrown)
+        {
+            float horizontalVelocity = rb.velocity.x;
+            if (state.grounded)
+                horizontalVelocity *= Mathf.Pow(1f - shootDamping, Time.deltaTime * damping);
+            else
+                horizontalVelocity *= Mathf.Pow(1f - shootDampingMidAir, Time.deltaTime * damping);
+            horizontalVelocity = Mathf.Clamp(horizontalVelocity, -maxVelocity, maxVelocity);
+            rb.velocity = new Vector2(horizontalVelocity, rb.velocity.y);
         }
         HandleGravity();
     }
@@ -36,39 +68,89 @@ public class PlayerMovement : MonoBehaviour
     private void HandleMovement()
     {
         state.Flip(state.horizontalSpeed);
-        if (state.wallGrabbing)
+        if (!rb.isKinematic)
         {
-            rb.velocity = Vector3.zero;
+            float horizontalVelocity = rb.velocity.x;
+            float xAxis = InputManager.xAxis;
+            horizontalVelocity += xAxis * walkingAcceleration / Time.deltaTime;
+            if (Mathf.Abs(xAxis) < 0.01f)
+                horizontalVelocity *= Mathf.Pow(1f - stopDamping, Time.deltaTime * damping);
+            else
+                horizontalVelocity *= Mathf.Pow(1f - walkDamping, Time.deltaTime * damping);
+
+            horizontalVelocity = Mathf.Clamp(horizontalVelocity, -maxVelocity, maxVelocity);
+            rb.velocity = new Vector2(horizontalVelocity, rb.velocity.y);
         }
-        rb.velocity = new Vector2(state.horizontalSpeed * walkingSpeed, rb.velocity.y);
-        if (!InputManager.touchActive) Jump();
+        if (!state.hit && state.recovered)
+        {
+            HandleJump();
+        }
     }
 
-    public void Jump()
+    public void HandleJump()
     {
-        if (InputManager.jump && state.jumpNo < 2)
+        bReplenishJumps = fRememberReplenishJumps > 0f;
+        bJumping = fRememberJumpPressed > 0f;
+
+        fRememberReplenishJumps -= Time.deltaTime;
+        if (state.grounded || state.wallGrabbing)
         {
-            Debug.Log("OK!");
-            if (!state.wallGrabbing)
+            fRememberReplenishJumps = fRememberReplenishJumpsTime;
+        }
+
+        fRememberJumpPressed -= Time.deltaTime;    
+        if (InputManager.jump)
+        {
+            fRememberJumpPressed = fRememberJumpPressedTime;
+        }
+
+        if (bReplenishJumps)
+        {
+            if (bJumping)
             {
-                rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
+                fRememberJumpPressed = 0f;
+                fRememberReplenishJumps = 0f;
+
+                state.jumpNo = 1;
+                state.PlayJumpSound();
+                Jump();
+            } else if (state.grounded && (!state.upsideDown && rb.velocity.y < 0 || state.upsideDown && rb.velocity.y > 0))
+            {
+                state.jumpNo = 0;
+            }
+        } else if (bJumping && state.jumpNo < 2)
+        {
+            fRememberJumpPressed = 0f;
+
+            state.jumpNo = 2;
+            state.PlayJumpSound();
+            Jump();
+        }
+        else if (state.jumpNo == 0)
+        {
+            state.jumpNo = 1;
+        } 
+    }
+
+    private void Jump()
+    {
+        if (state.wallGrabbing)
+        {
+            if (state.facingRight)
+            {
+                state.Flip(-1);
+                rb.velocity = new Vector2(-5, jumpHeight);
             }
             else
             {
-                if (state.facingRight)
-                {
-                    rb.velocity = new Vector2(-5, jumpHeight);
-                    state.Flip(-1);
-                }
-                else
-                {
-                    rb.velocity = new Vector2(5, jumpHeight);
-                    state.Flip(1);
-                }
-                state.FreezeMoves(wallJumpFrame);
+                state.Flip(1);
+                rb.velocity = new Vector2(5, jumpHeight);
             }
-            state.PlayJumpSound();
-            state.incrementJumpNo();
+            state.FreezeMoves(wallJumpFrame);
+        }
+        else
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
         }
     }
 }

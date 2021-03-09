@@ -43,6 +43,6 @@ public class ZoysAttack : MonoBehaviour {
     public void shootLightning()
     {
         Instantiate(lightning, lightningSpawn.position, lightningSpawn.rotation);
-        FindObjectOfType<AudioManager>().PlaySound("zLightning");
+        FindObjectOfType<AudioManager>().PlaySound("throwLightning");
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class KungFrogStatesAnimationSound : MonoBehaviour
@@ -39,8 +40,15 @@ public class KungFrogStatesAnimationSound : MonoBehaviour
 
     public GameObject elevator;
 
+    private new SpriteRenderer renderer;
+    private Color flashOff;
+    private bool hit;
+    private bool wasGrounded;
+
     private void Start()
     {
+        renderer = GetComponent<SpriteRenderer>();
+        flashOff = renderer.color;
         Physics2D.IgnoreLayerCollision(8, 9, false);
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -53,6 +61,14 @@ public class KungFrogStatesAnimationSound : MonoBehaviour
     {
         HandleStates();
         HandleAnimation();
+        HandleCameraShake();
+    }
+
+    private void HandleCameraShake()
+    {
+        if (!wasGrounded && grounded)
+            StartCoroutine(FindObjectOfType<CameraShake>().Shake(.5f, .05f));
+        wasGrounded = grounded;
     }
 
     private void HandleStates()
@@ -78,22 +94,6 @@ public class KungFrogStatesAnimationSound : MonoBehaviour
         animator.SetBool("walking", walking);
     }
 
-    private IEnumerator Flash()
-    {
-        Physics2D.IgnoreLayerCollision(8, 9, true);
-        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
-        float flashAfter = 0.15f;
-        Color flashOn = Color.clear;
-        Color flashOff = renderer.color;
-        for (int i = 0; i < 5; i++)
-        {
-            renderer.color = flashOn;
-            yield return new WaitForSeconds(flashAfter);
-            renderer.color = flashOff;
-            yield return new WaitForSeconds(flashAfter);
-        }
-        Physics2D.IgnoreLayerCollision(8, 9, false);
-    }
 
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -173,5 +173,24 @@ public class KungFrogStatesAnimationSound : MonoBehaviour
     internal Vector2 getPlayerPosition()
     {
         return player.position;
+    }
+
+
+    private IEnumerator Flash()
+    {
+        Physics2D.IgnoreLayerCollision(8, 9, true);
+        hit = true;
+        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+        float flashAfter = 0.15f;
+        Color flashOn = Color.clear;
+        for (int i = 0; i < 5; i++)
+        {
+            renderer.color = flashOn;
+            yield return new WaitForSeconds(flashAfter);
+            renderer.color = flashOff;
+            yield return new WaitForSeconds(flashAfter);
+        }
+        hit = false;
+        Physics2D.IgnoreLayerCollision(8, 9, false);
     }
 }

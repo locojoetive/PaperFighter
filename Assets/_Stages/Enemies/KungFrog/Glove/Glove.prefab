@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5033372}
   - component: {fileID: 11454806}
   - component: {fileID: 1858003012}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Glove
   m_TagString: projectileA
   m_Icon: {fileID: 0}
@@ -67,6 +67,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -90,7 +91,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 528d4e604eb32f74d95eb5b5cc84ea81, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
