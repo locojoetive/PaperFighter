@@ -109,13 +109,13 @@ public class InputManager : MonoBehaviour
 
     private void HandleTouchInputs()
     {
-        jump = touch.jump;
-        jumpContinuous = touch.jumpContinuous;
-        jumpRelease = touch.jumpRelease;
-        action = touch.swipe;
-        actionContinuous = touch.swipeContinuous;
-        actionRelease = touch.swipeRelease;
-        confirm = touch.confirm;
+        jump = touch.Jump;
+        jumpContinuous = touch.JumpContinuous;
+        jumpRelease = touch.JumpRelease;
+        action = touch.Swipe;
+        actionContinuous = touch.SwipeContinuous;
+        actionRelease = touch.SwipeRelease;
+        confirm = touch.Confirm;
 
         xAxis = joystick.xAxis;
         // yAxis = joystick.Vertical;

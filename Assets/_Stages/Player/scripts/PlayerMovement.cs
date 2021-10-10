@@ -53,7 +53,8 @@ public class PlayerMovement : MonoBehaviour
             else
                 horizontalVelocity *= Mathf.Pow(1f - shootDampingMidAir, Time.deltaTime * damping);
             horizontalVelocity = Mathf.Clamp(horizontalVelocity, -maxVelocity, maxVelocity);
-            rb.velocity = new Vector2(horizontalVelocity, rb.velocity.y);
+            if (!float.IsNaN(horizontalVelocity))
+                rb.velocity = new Vector2(horizontalVelocity, rb.velocity.y);
         }
         HandleGravity();
     }
@@ -79,7 +80,8 @@ public class PlayerMovement : MonoBehaviour
                 horizontalVelocity *= Mathf.Pow(1f - walkDamping, Time.deltaTime * damping);
 
             horizontalVelocity = Mathf.Clamp(horizontalVelocity, -maxVelocity, maxVelocity);
-            rb.velocity = new Vector2(horizontalVelocity, rb.velocity.y);
+            if (!float.IsNaN(horizontalVelocity))
+                rb.velocity = new Vector2(horizontalVelocity, rb.velocity.y);
         }
         if (!state.hit && state.recovered)
         {

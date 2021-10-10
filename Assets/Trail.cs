@@ -14,9 +14,9 @@ public class Trail : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (touchField.fingerDown)
+        if (touchField.FingerDown)
         {
-            Vector2 pos = Camera.main.ScreenToWorldPoint(touchField.fingerPosition);
+            Vector2 pos = Camera.main.ScreenToWorldPoint(touchField.FingerPosition);
             transform.position = pos;
             if (clear)
             {

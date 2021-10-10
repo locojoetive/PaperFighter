@@ -3,50 +3,48 @@
 
 public class TouchField : MonoBehaviour
 {
-    private RectTransform rectTransform = null;
-    private Canvas canvas;
-    private Camera cam;
-
+    private JumpButton jumpButton;
     private Vector2 vSwipeStart;
-
-    [HideInInspector]
-    public Vector2 vSwipe;
+    
     private Vector2 vNeutralScreenPosition;
     private bool useInGameControls;
     private float tSwipeCancledAt;
     public float tSwipeCancledAfter;
     public float fSwipeRadius;
 
-    PlayerMovement player;
-
-    public bool
+    internal Vector2 vSwipe;
+    
+    [SerializeField]
+    private bool
         swipe = false,
         swipeContinuous = false,
         swipeRelease = false,
-        jump = false,
-        jumpContinuous = false,
-        jumpRelease = false,
         confirm = false,
         inRadius = false,
         inTime = false,
         fingerDown = false,
         actionInProgress = false;
 
+
+
     private int fingerId = -1;
-    public Vector2 fingerPosition;
+    private Vector2 fingerPosition;
     private Touch[] oldTouches = new Touch[0];
+
+    public bool Jump { get { return jumpButton.Jump; } }
+    public bool JumpContinuous { get { return jumpButton.JumpContinuous; } }
+    public bool JumpRelease { get { return jumpButton.JumpRelease; } }
+    public bool Swipe { get { return swipe; } }
+    public bool SwipeContinuous { get { return swipeContinuous; } }
+    public bool SwipeRelease{ get { return swipeRelease; } }
+    public bool Confirm { get { return confirm; } }
+    public bool FingerDown { get { return fingerDown; } }
+    public Vector2 FingerPosition { get { return fingerPosition; } }
+
 
     protected virtual void Start()
     {
-        rectTransform = GetComponent<RectTransform>();
-        canvas = GetComponentInParent<Canvas>();
-        cam = null;
-        if (canvas.renderMode == RenderMode.ScreenSpaceCamera)
-            cam = canvas.worldCamera;
-
-        if (canvas == null)
-            Debug.LogError("The Joystick is not placed inside a canvas");
-        
+        jumpButton = GetComponentInChildren<JumpButton>();
         OnLevelFinishedLoading();
     }
 
@@ -62,43 +60,16 @@ public class TouchField : MonoBehaviour
 
     private void HandleAction()
     {
-        // DebugTouches();
         HandleTouchInputsInGame();
 
         if (fingerDown)
         {
-            // States
             inTime = Time.time < tSwipeCancledAt;
             inRadius = inRadius && vSwipe.magnitude < fSwipeRadius;
         }
-
-        bool jumping = jump || jumpContinuous ||jumpRelease;
-        if (actionInProgress && !fingerDown && !jumping && inRadius)
-        {
-            jump = true;
-        }
-        else if (jump)
-        {
-            jump = false;
-            jumpContinuous = true;
-            // player.Jump();
-        } else if (jumpContinuous)
-        {
-            jump = false;
-            jumpContinuous = false;
-            jumpRelease = true;
-        }
-        else if (jumpRelease)
-        {
-            jump = false;
-            jumpContinuous = false;
-            jumpRelease = false;
-            actionInProgress = false;
-        }
-
         bool swiping = swipe || swipeContinuous;
 
-        if (actionInProgress && fingerDown && !swiping && !jumping && !inRadius)
+        if (actionInProgress && fingerDown && !swiping && !inRadius)
         {
             swipe = true;
         }
@@ -221,6 +192,5 @@ public class TouchField : MonoBehaviour
     public void OnLevelFinishedLoading()
     {
         useInGameControls = StageManager.onStage;
-        player = FindObjectOfType<PlayerMovement>();
     }
 }
