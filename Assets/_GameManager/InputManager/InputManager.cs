@@ -21,19 +21,22 @@ public class InputManager : MonoBehaviour
     public static float
         xAxis,
         yAxis;
+    [SerializeField]
+    private GameObject touchControls;
     TouchField touch;
     FloatingJoystick joystick;
     public static bool touchActive;
+    public static bool useInGameControls;
 
     void Start()
     {
-        touch = FindObjectOfType<TouchField>(true);
-        joystick = FindObjectOfType<FloatingJoystick>(true);
-
+        touch = touchControls.GetComponentInChildren<TouchField>(true);
+        joystick = touchControls.GetComponentInChildren<FloatingJoystick>(true);
     }
 
     private void Update()
     {
+        useInGameControls = StageManager.onStage && !UIManager.paused;
         if (active)
         {
             HandleInputs();
@@ -67,9 +70,6 @@ public class InputManager : MonoBehaviour
 
     private void ResetKeys()
     {
-        touchActive = false;
-        KeyBoardHandler.active = false;
-
         xAxis = 0F;
         yAxis = 0F;
         left = false;
@@ -118,7 +118,6 @@ public class InputManager : MonoBehaviour
         confirm = touch.Confirm;
 
         xAxis = joystick.xAxis;
-        // yAxis = joystick.Vertical;
         left = joystick.left;
         up = joystick.up;
         down = joystick.down;

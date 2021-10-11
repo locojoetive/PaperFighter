@@ -3,11 +3,11 @@
 
 public class TouchField : MonoBehaviour
 {
+    private GameObject joystick;
     private JumpButton jumpButton;
     private Vector2 vSwipeStart;
     
     private Vector2 vNeutralScreenPosition;
-    private bool useInGameControls;
     private float tSwipeCancledAt;
     public float tSwipeCancledAfter;
     public float fSwipeRadius;
@@ -44,16 +44,16 @@ public class TouchField : MonoBehaviour
 
     protected virtual void Start()
     {
-        jumpButton = GetComponentInChildren<JumpButton>();
-        OnLevelFinishedLoading();
+        jumpButton = GetComponentInChildren<JumpButton>(true);
+        joystick = FindObjectOfType<FloatingJoystick>(true).gameObject;
     }
 
     private void Update()
     {
-        useInGameControls = StageManager.onStage && !UIManager.paused;
         vNeutralScreenPosition = .5f * new Vector2(Camera.main.scaledPixelWidth, Camera.main.scaledPixelHeight);
-        
-        if (!useInGameControls) confirm = ATouchBegan();
+        jumpButton.gameObject.SetActive(InputManager.touchActive && InputManager.useInGameControls);
+        joystick.SetActive(InputManager.touchActive && InputManager.useInGameControls);
+        if (!InputManager.useInGameControls) confirm = ATouchBegan();
         else HandleAction();
         oldTouches = Input.touches;
     }
@@ -187,10 +187,5 @@ public class TouchField : MonoBehaviour
             }
         }
         return true;
-    }
-
-    public void OnLevelFinishedLoading()
-    {
-        useInGameControls = StageManager.onStage;
     }
 }

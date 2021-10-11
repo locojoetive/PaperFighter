@@ -10,8 +10,8 @@ public class PlayerMovement : MonoBehaviour
     private int
         jumpHeight = 10;
     
-    private float fRememberJumpPressedTime = 0.2f;
-    private float fRememberReplenishJumpsTime = 0.2f;
+    private float fRememberJumpPressedTime = 0.1f;
+    private float fRememberReplenishJumpsTime = 0.1f;
     private float fRememberJumpPressed;
     private float fRememberReplenishJumps;
     private bool bReplenishJumps = false;
@@ -91,11 +91,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void HandleJump()
     {
+        bool actuallyGrounded = state.grounded && ((!state.upsideDown && rb.velocity.y < 0) || (state.upsideDown && rb.velocity.y > 0));
+
         bReplenishJumps = fRememberReplenishJumps > 0f;
         bJumping = fRememberJumpPressed > 0f;
 
         fRememberReplenishJumps -= Time.deltaTime;
-        if (state.grounded || state.wallGrabbing)
+        if (actuallyGrounded || state.wallGrabbing)
         {
             fRememberReplenishJumps = fRememberReplenishJumpsTime;
         }
@@ -116,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
                 state.jumpNo = 1;
                 state.PlayJumpSound();
                 Jump();
-            } else if (state.grounded && (!state.upsideDown && rb.velocity.y < 0 || state.upsideDown && rb.velocity.y > 0))
+            } else if (actuallyGrounded)
             {
                 state.jumpNo = 0;
             }
@@ -153,6 +155,8 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
+            Debug.Log("JUMP NO." + state.jumpNo);
+            fRememberReplenishJumps = 0f;
         }
     }
 }

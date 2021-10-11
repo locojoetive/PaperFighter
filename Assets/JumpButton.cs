@@ -1,81 +1,84 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class JumpButton : MonoBehaviour
 {
     [SerializeField]
-    private bool jump;
+    private Color neutral;
+    [SerializeField]
+    private Color pressed;
 
+    [SerializeField]
+    private bool jump;
     [SerializeField]
     private bool jumpContinuous;
-
     [SerializeField]
     private bool jumpRelease;
+    [SerializeField]
+    private float changeColorIn = 1f;
 
-    private bool waitedOneFrame = false;
+    private UnityEngine.UI.Image buttonImage;
+    private bool isPressed = false;
+    private bool hasWaitedOneFrame = false;
+    private int currentFingerId = -1;
 
     public bool Jump { get { return jump; } }
     public bool JumpContinuous { get { return jumpContinuous; } }
     public bool JumpRelease { get { return jumpRelease; } }
 
+    void Start()
+    {
+        buttonImage = GetComponent<UnityEngine.UI.Image>();
+    }
+
     private void Update()
     {
         if (jump)
         {
-            if (waitedOneFrame)
+            if (!hasWaitedOneFrame)
+            {
+                hasWaitedOneFrame = true;
+            }
+            else
             {
                 jump = false;
                 jumpContinuous = true;
-            } else
-            {
-                waitedOneFrame = true;
             }
-        }
-        else
-        {
-            waitedOneFrame = false;
-        }
-    }
-    /*
-    public void OnJump()
-    {
-        bool jumping = jump || jumpContinuous || jumpRelease;
-        if (!jumping)
-        {
-            jump = true;
-        }
-        else if (jump)
-        {
-            jump = false;
-            jumpContinuous = true;
         }
         else if (jumpContinuous)
         {
-            jump = false;
             jumpContinuous = false;
             jumpRelease = true;
         }
         else if (jumpRelease)
         {
-            jump = false;
-            jumpContinuous = false;
             jumpRelease = false;
         }
     }
-    */
 
-    public void OnPointerDown()
+    public void OnPointerDown(BaseEventData eventData)
     {
-        jump = true;
-        jumpContinuous = false;
-        jumpRelease = false;
-        Debug.Log("Its goin DOWN");
+        if(!jump && !jumpContinuous && !jumpRelease)
+        {
+            isPressed = true;
+            jump = true;
+            jumpContinuous = false;
+            jumpRelease = false;
+            StartCoroutine(JumpPressed());
+        }
     }
 
-    public void OnPointerUp()
+
+    System.Collections.IEnumerator JumpPressed()
     {
-        jump = false;
-        jumpContinuous = false;
-        jumpRelease = true;
-        Debug.Log("Its goin UP!");
+        isPressed = false;
+        float time = 0f;
+        while(!isPressed && time < changeColorIn)
+        {
+            float factor = time / changeColorIn;
+            buttonImage.color = Color.Lerp(pressed, neutral, factor);
+            time += Time.deltaTime;
+            yield return null;
+        }
     }
 }
