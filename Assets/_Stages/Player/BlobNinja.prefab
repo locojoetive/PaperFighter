@@ -101,7 +101,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 30
+  m_SortingOrder: 1
   m_Sprite: {fileID: -4677609165139703471, guid: 3214480965f69484f989607f60151004,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -218,12 +218,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f3183a6fbf46ef44b6cfd420b0ec755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shurikenSpawn: {fileID: 8695831691934445954}
   shuriken: {fileID: 169514, guid: 5b0a101c58a65af4db136739c5e7fb86, type: 3}
   aim: {fileID: 4174451941824847598, guid: 1d7fcbe56ed3f8c42b5121b7b66c81a1, type: 3}
-  attackState: 3
-  maximumShootPower: 3.5
-  keyboardAimSpeed: 10
+  shurikenSpawn: {fileID: 8695831691934445954}
 --- !u!114 &5212682752143860633
 MonoBehaviour:
   m_ObjectHideFlags: 0
