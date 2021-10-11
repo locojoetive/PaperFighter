@@ -58,12 +58,6 @@ public class ExportWebGL : MonoBehaviour
     static string TimeSpanToHHMMSSString(TimeSpan s)
     {
         return s.ToString();
-        /*
-        if (s.ToString("hh") != "00")
-            return s.ToString("hh") + "h " + s.ToString("mm") + "m " + s.ToString("ss") + "s";
-        else
-            return s.ToString("mm") + "m " + s.ToString("ss") + "s";
-            */
     }
 
     static string PathRelativeTo(string path, string basePathRelativeTo)
@@ -75,9 +69,10 @@ public class ExportWebGL : MonoBehaviour
     [MenuItem("MyTools/WebGL Toll")]
     static void DoHtml5BuildToDirectory(string path, string emscriptenLinkerFlags, WebGLCompressionFormat compressionFormat, bool wasm)
     {
+        int memorySize = 64;
         PlayerSettings.WebGL.linkerTarget = wasm ? WebGLLinkerTarget.Wasm : WebGLLinkerTarget.Asm;
         PlayerSettings.WebGL.threadsSupport = false;
-        PlayerSettings.WebGL.memorySize = 256;
+        PlayerSettings.WebGL.memorySize = memorySize;
         PlayerSettings.WebGL.emscriptenArgs = " -s TOTAL_STACK=1MB " + " -s ERROR_ON_UNDEFINED_SYMBOLS=0 " + emscriptenLinkerFlags;
         PlayerSettings.WebGL.compressionFormat = compressionFormat;
         PlayerSettings.WebGL.decompressionFallback = true;
@@ -86,9 +81,10 @@ public class ExportWebGL : MonoBehaviour
 
         PlayerSettings.defaultScreenWidth = 960;
         PlayerSettings.defaultScreenWidth = 540;
+        PlayerSettings.stripEngineCode = true;
 
         Debug.Log("Starting a HTML5 build with Emscripten linker flags \"" + PlayerSettings.WebGL.emscriptenArgs + "\" to directory \"" + path + "\"...");
-
+        Debug.Log("USING " + memorySize + "MB WEBGL MEMORY SIZE!!!!!!!!!!!!!");
         if (!System.IO.Directory.Exists(path))
             System.IO.Directory.CreateDirectory(path);
         buildLogFile = path + "/build_log.txt";
@@ -121,7 +117,7 @@ public class ExportWebGL : MonoBehaviour
     static void DoHtml5Build(string kind, string emscriptenLinkerFlags, WebGLCompressionFormat compressionFormat, bool wasm)
     {
         var date = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-        var path = System.IO.Path.GetFullPath(Application.dataPath + "/../../html5_builds/" + Application.productName + "_" + date + "_" + kind);
+        var path = System.IO.Path.GetFullPath(Application.dataPath + "/../Build/webgl/" + Application.productName + "_" + date + "_" + kind);
         DoHtml5BuildToDirectory(path, emscriptenLinkerFlags, compressionFormat, wasm);
     }
 
