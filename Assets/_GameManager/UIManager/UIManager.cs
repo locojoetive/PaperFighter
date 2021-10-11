@@ -5,14 +5,8 @@ public class UIManager : MonoBehaviour
 {
     public static bool paused = false;
     public GameObject pauseButton;
-    public GameObject overlay;
     public GameObject pauseMenu;
     public GameObject resumeButton;
-    
-    void Awake()
-    {
-        overlay.SetActive(false);
-    }
 
     private void Update()
     {
@@ -31,18 +25,22 @@ public class UIManager : MonoBehaviour
 
     public void OnPause()
     {
-        paused = true;
-        if (!InputManager.touchActive) 
-            EventSystem.current.SetSelectedGameObject(resumeButton);
-        overlay.SetActive(true);
-        pauseMenu.SetActive(true);
-        pauseButton.SetActive(false);
-        Time.timeScale = 0F;
+        if (InputManager.active)
+        {
+            paused = true;
+            pauseMenu.SetActive(true);
+            pauseButton.SetActive(false);
+            Time.timeScale = 0F;
+
+            if (!InputManager.touchActive)
+            {
+                EventSystem.current.SetSelectedGameObject(resumeButton);
+            }
+        }
     }
 
     public void OnResume()
     {
-        overlay.SetActive(false);
         pauseMenu.SetActive(false);
         pauseButton.SetActive(true);
         paused = false;

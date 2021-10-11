@@ -37,18 +37,11 @@ public class GameManager : MonoBehaviour
     }
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
-        StartCoroutine(ActivateControlsIn(1F));
         FindObjectOfType<StageManager>().OnLevelFinishedLoading(scene);
-        FindObjectOfType<TouchField>().OnLevelFinishedLoading();
         FindObjectOfType<AudioManager>().OnLevelFinishedLoading(scene);
         FindObjectOfType<PlayThemes>().OnLevelFinishedLoading();
         FindObjectOfType<EnableHUDOnStage>().OnLevelFinishedLoading();
         FindObjectOfType<FollowPlayer>().OnLevelFinishedLoading();
     }
 
-    private System.Collections.IEnumerator ActivateControlsIn(float v)
-    {
-        yield return new WaitForSeconds(v);
-        InputManager.active = true;
-    }
 }

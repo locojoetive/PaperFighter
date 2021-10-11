@@ -16,6 +16,7 @@ public class FadeInAndOutCamera : MonoBehaviour
 
     private System.Collections.IEnumerator FadeOut(string sceneName)
     {
+        InputManager.active = false;
         animator.SetBool("Fade", true);
         GameManager.paused = true;
         Sound currentTheme = audioManager.currentTheme;
@@ -35,5 +36,15 @@ public class FadeInAndOutCamera : MonoBehaviour
     public void OnLevelFinishedLoading()
     {
         animator.SetBool("Fade", false);
+        StartCoroutine(ActivateControlsAfterFadeIn());
+    }
+
+
+    private System.Collections.IEnumerator ActivateControlsAfterFadeIn()
+    {
+        yield return new WaitUntil(() => {
+            return black.color.a == 0;
+        });
+        InputManager.active = true;
     }
 }
