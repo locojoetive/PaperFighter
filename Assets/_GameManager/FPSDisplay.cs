@@ -16,7 +16,6 @@ public class FPSDisplay : MonoBehaviour
         float current = 0;
         current = (int)(1f / Time.unscaledDeltaTime);
         avgFrameRate = (int) current;
-        if (avgFrameRate < 30) display_Text.text = avgFrameRate.ToString() + " FPS";
-        else display_Text.text = "";
+        display_Text.text = avgFrameRate.ToString() + " FPS";
     }
 }
