@@ -324,8 +324,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<font=\"American Captain SDF\">Thank You for playing our Game <3\n\n       
-    ~ Fro Bros"
+  m_text: "<font=\"American Captain SDF\">Thank You for playing my Game <3\n\n       
+    ~ locojoetive"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -553,7 +553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   credits:
-  - descriptor: Programming X Animation X Sound
+  - descriptor: Programming X Design
     mentions:
     - Johannes Michael
   - descriptor: Title Art
@@ -566,7 +566,6 @@ MonoBehaviour:
     - Maren Springsklee
     - Hyeon Ung Kim
     - Alexander Kolbe
-    - Hyeon Ung Kim
     - Felix Stauch
     - Nils Graichen
     - Songmin Kim
@@ -578,13 +577,9 @@ MonoBehaviour:
     - Krubel Yemane
     - Dilan Korkut
     - Georgis Balaskas
-  - descriptor: Special Thanks
-    mentions:
-    - Our Parents
-    - Aru
-    - CobbieCobbie
-    - Yoshi
-    - Maren
+    - Amar Music
+  - descriptor: Special Thanks to my parents
+    mentions: []
   creditPrefab: {fileID: 5472468479833854979, guid: 565deddb8b798ab44a44c01748da885e,
     type: 3}
   creditObjects: []
