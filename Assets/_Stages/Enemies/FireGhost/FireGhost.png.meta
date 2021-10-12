@@ -1,0 +1,586 @@
+fileFormatVersion: 2
+guid: 59764b948d744614dac7fc58bfd719e0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: FireGhost_0
+  - first:
+      213: 21300002
+    second: FireGhost_1
+  - first:
+      213: 21300004
+    second: FireGhost_2
+  - first:
+      213: 21300006
+    second: FireGhost_3
+  - first:
+      213: 21300008
+    second: FireGhost_4
+  - first:
+      213: 21300010
+    second: FireGhost_5
+  - first:
+      213: 21300012
+    second: FireGhost_6
+  - first:
+      213: 21300014
+    second: FireGhost_7
+  - first:
+      213: 21300016
+    second: FireGhost_8
+  - first:
+      213: 21300018
+    second: FireGhost_9
+  - first:
+      213: 21300020
+    second: FireGhost_10
+  - first:
+      213: 21300022
+    second: FireGhost_11
+  - first:
+      213: 21300024
+    second: FireGhost_12
+  - first:
+      213: 21300026
+    second: FireGhost_13
+  - first:
+      213: 21300028
+    second: FireGhost_14
+  - first:
+      213: 21300030
+    second: FireGhost_15
+  - first:
+      213: 810223408434837071
+    second: FireGhost_0
+  - first:
+      213: -1529703421625508815
+    second: FireGhost_1
+  - first:
+      213: 7947873985220549522
+    second: FireGhost_2
+  - first:
+      213: -1279641022544207195
+    second: FireGhost_3
+  - first:
+      213: -5774604739641695625
+    second: FireGhost_4
+  - first:
+      213: -8760563328208662503
+    second: FireGhost_5
+  - first:
+      213: 8954375151424428522
+    second: FireGhost_6
+  - first:
+      213: 7208352286985083789
+    second: FireGhost_7
+  - first:
+      213: 2637668797320458371
+    second: FireGhost_8
+  - first:
+      213: -1802418333206939121
+    second: FireGhost_9
+  - first:
+      213: 2287370322660271701
+    second: FireGhost_10
+  - first:
+      213: 6094425015908604415
+    second: FireGhost_11
+  - first:
+      213: 5332456773768724102
+    second: FireGhost_12
+  - first:
+      213: 3882830532899152876
+    second: FireGhost_13
+  - first:
+      213: 5146120586137833954
+    second: FireGhost_14
+  - first:
+      213: 1030250963729566146
+    second: FireGhost_15
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 0
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 16
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 1
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 100
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 1
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 100
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 1
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 100
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 1
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 100
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 1024
+    resizeAlgorithm: 1
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 100
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 512
+    resizeAlgorithm: 1
+    textureFormat: 4
+    textureCompression: 2
+    compressionQuality: 100
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 1
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FireGhost_0
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 214
+        width: 42
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f46f670b5ed7e3b00800000000000000
+      internalID: 810223408434837071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireGhost_1
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 214
+        width: 45
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13cdf4eb7d665cae0800000000000000
+      internalID: -1529703421625508815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireGhost_2
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 168
+        width: 45
+        height: 38
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44496074}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29b93a8a7458c4e60800000000000000
+      internalID: 7947873985220549522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireGhost_3
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 162
+        width: 45
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5066398, y: 0.38617706}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a22c33154dcd3ee0800000000000000
+      internalID: -1279641022544207195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireGhost_4
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 161
+        width: 45
+        height: 48
+      alignment: 9
+      pivot: {x: 0.51327956, y: 0.30703416}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 772ae5f959b7cdfa0800000000000000
+      internalID: -5774604739641695625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireGhost_5
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 161
+        width: 45
+        height: 48
+      alignment: 9
+      pivot: {x: 0.48672077, y: 0.25101185}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9101fc5811a3c6680800000000000000
+      internalID: -8760563328208662503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireGhost_6
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 156
+        width: 85
+        height: 54
+      alignment: 9
+      pivot: {x: 0.25042582, y: 0.2620779}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae9dc3602c4544c70800000000000000
+      internalID: 8954375151424428522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireGhost_7
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 153
+        width: 130
+        height: 58
+      alignment: 9
+      pivot: {x: 0.1782304, y: 0.26303178}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8bde99a636390460800000000000000
+      internalID: 7208352286985083789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireGhost_8
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 89
+        width: 123
+        height: 58
+      alignment: 9
+      pivot: {x: 0.17206392, y: 0.25272897}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 380fa63dbc1ea9420800000000000000
+      internalID: 2637668797320458371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireGhost_9
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 92
+        width: 130
+        height: 57
+      alignment: 9
+      pivot: {x: 0.16214189, y: 0.23790714}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0a7c8853168cf6e0800000000000000
+      internalID: -1802418333206939121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireGhost_10
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 88
+        width: 130
+        height: 58
+      alignment: 9
+      pivot: {x: 0.17593196, y: 0.25788012}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 556afef703f5ebf10800000000000000
+      internalID: 2287370322660271701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireGhost_11
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 86
+        width: 86
+        height: 54
+      alignment: 9
+      pivot: {x: 0.25332785, y: 0.2565449}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff99c77234fb39450800000000000000
+      internalID: 6094425015908604415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireGhost_12
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 25
+        width: 45
+        height: 48
+      alignment: 9
+      pivot: {x: 0.51991916, y: 0.27591053}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68e3c94ee21b00a40800000000000000
+      internalID: 5332456773768724102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireGhost_13
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 25
+        width: 45
+        height: 48
+      alignment: 9
+      pivot: {x: 0.51991916, y: 0.28213525}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce3ae7c2cc592e530800000000000000
+      internalID: 3882830532899152876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireGhost_14
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 25
+        width: 45
+        height: 42
+      alignment: 9
+      pivot: {x: 0.50663996, y: 0.3221511}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e112146861ba6740800000000000000
+      internalID: 5146120586137833954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireGhost_15
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 25
+        width: 45
+        height: 38
+      alignment: 9
+      pivot: {x: 0.5, y: 0.32701874}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c9ca920bcf2c4e00800000000000000
+      internalID: 1030250963729566146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 51da59000cedbd6449d02839346a7127
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

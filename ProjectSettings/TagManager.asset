@@ -3,7 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - life
+  - StageManager
+  - TextBox
+  - TextBoxBackground
+  - TextBoxContent
+  - TextBoxAuthor
+  - paper
+  - groundWall
+  - weapon
+  - hittable
+  - projectileA
+  - gravityReverse
   layers:
   - Default
   - TransparentFX
@@ -13,10 +25,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Enemy
+  - Weapon
+  - Player
+  - Glove
   - 
   - 
   - 
@@ -38,6 +50,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Trail
+    uniqueID: 2171064391
+    locked: 0
+  - name: New Layer
+    uniqueID: 3707639423
+    locked: 0
+  - name: background
+    uniqueID: 1995244405
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

@@ -1,0 +1,640 @@
+fileFormatVersion: 2
+guid: 3388a159345d59e46bd69807c5451a51
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: Zois_0
+  - first:
+      213: 21300002
+    second: Zois_1
+  - first:
+      213: 21300004
+    second: Zois_2
+  - first:
+      213: 21300006
+    second: Zois_3
+  - first:
+      213: 21300008
+    second: Zois_4
+  - first:
+      213: 21300010
+    second: Zois_5
+  - first:
+      213: 21300012
+    second: Zois_6
+  - first:
+      213: 21300014
+    second: Zois_7
+  - first:
+      213: 21300016
+    second: Zois_8
+  - first:
+      213: 21300018
+    second: Zois_9
+  - first:
+      213: 21300020
+    second: Zois_10
+  - first:
+      213: 21300022
+    second: Zois_11
+  - first:
+      213: 21300024
+    second: Zois_12
+  - first:
+      213: 21300026
+    second: Zois_14
+  - first:
+      213: 21300028
+    second: Zois_16
+  - first:
+      213: 21300030
+    second: Zois_18
+  - first:
+      213: 21300032
+    second: Zois_20
+  - first:
+      213: 21300034
+    second: Zois_22
+  - first:
+      213: -3527063264417918218
+    second: Zois_0
+  - first:
+      213: -5790154526592916902
+    second: Zois_1
+  - first:
+      213: 1799864111350803649
+    second: Zois_2
+  - first:
+      213: 5348547121177279704
+    second: Zois_3
+  - first:
+      213: 5072747063544788818
+    second: Zois_4
+  - first:
+      213: -5282467116364611
+    second: Zois_5
+  - first:
+      213: 7190617027736066706
+    second: Zois_6
+  - first:
+      213: 7146241760794369481
+    second: Zois_7
+  - first:
+      213: -3002639189878037819
+    second: Zois_8
+  - first:
+      213: 5451191696356123594
+    second: Zois_9
+  - first:
+      213: 215976550119187437
+    second: Zois_10
+  - first:
+      213: -5489324173346478048
+    second: Zois_11
+  - first:
+      213: 4866064059133892979
+    second: Zois_12
+  - first:
+      213: 6771148615971552726
+    second: Zois_14
+  - first:
+      213: -8958577806697883345
+    second: Zois_16
+  - first:
+      213: 6797840498525474796
+    second: Zois_18
+  - first:
+      213: -5027352417388072801
+    second: Zois_20
+  - first:
+      213: 7295905449036182786
+    second: Zois_22
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 0
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 16
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 1
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 100
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 1024
+    resizeAlgorithm: 1
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 100
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 1024
+    resizeAlgorithm: 1
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 100
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 1024
+    resizeAlgorithm: 1
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 100
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 1024
+    resizeAlgorithm: 1
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 1024
+    resizeAlgorithm: 1
+    textureFormat: 4
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 1
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Zois_0
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 933
+        width: 13
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f25a00f5aa5d0fc0800000000000000
+      internalID: -3527063264417918218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zois_1
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 930
+        width: 13
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a522fc7b22d35afa0800000000000000
+      internalID: -5790154526592916902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zois_2
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 824
+        width: 103
+        height: 137
+      alignment: 9
+      pivot: {x: 0.4660458, y: 0.61912906}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cce9098fd66af810800000000000000
+      internalID: 1799864111350803649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zois_3
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 815
+        width: 105
+        height: 143
+      alignment: 9
+      pivot: {x: 0.45558995, y: 0.62228245}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dcb536d44bd93a40800000000000000
+      internalID: 5348547121177279704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zois_4
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 814
+        width: 103
+        height: 151
+      alignment: 9
+      pivot: {x: 0.45472822, y: 0.59264326}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2573ef5e394066640800000000000000
+      internalID: 5072747063544788818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zois_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 805
+        width: 105
+        height: 145
+      alignment: 9
+      pivot: {x: 0.46669284, y: 0.612556}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbccdf7cf9b3deff0800000000000000
+      internalID: -5282467116364611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zois_6
+      rect:
+        serializedVersion: 2
+        x: 803
+        y: 812
+        width: 114
+        height: 140
+      alignment: 9
+      pivot: {x: 0.5102261, y: 0.63322926}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29a5516d6143ac360800000000000000
+      internalID: 7190617027736066706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zois_7
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 643
+        width: 103
+        height: 146
+      alignment: 9
+      pivot: {x: 0.44340974, y: 0.58783126}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cdd53fd40d8c2360800000000000000
+      internalID: 7146241760794369481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zois_8
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 642
+        width: 103
+        height: 146
+      alignment: 9
+      pivot: {x: 0.43209156, y: 0.5798465}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c227a2c09b7456d0800000000000000
+      internalID: -3002639189878037819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zois_9
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 640
+        width: 103
+        height: 146
+      alignment: 9
+      pivot: {x: 0.43209186, y: 0.5798465}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac3add757f586ab40800000000000000
+      internalID: 5451191696356123594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zois_10
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 643
+        width: 102
+        height: 146
+      alignment: 9
+      pivot: {x: 0.45428467, y: 0.5718618}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de32bad278d4ff200800000000000000
+      internalID: 215976550119187437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zois_11
+      rect:
+        serializedVersion: 2
+        x: 805
+        y: 631
+        width: 103
+        height: 145
+      alignment: 9
+      pivot: {x: 0.43209276, y: 0.5723574}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 028e7be7fb002d3b0800000000000000
+      internalID: -5489324173346478048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zois_12
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 447
+        width: 145
+        height: 176
+      alignment: 9
+      pivot: {x: 0.32312652, y: 0.5066237}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37998f2fa7bb78340800000000000000
+      internalID: 4866064059133892979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zois_14
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 451
+        width: 141
+        height: 174
+      alignment: 9
+      pivot: {x: 0.34291196, y: 0.50669986}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ddbc588ac3f7fd50800000000000000
+      internalID: 6771148615971552726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zois_16
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 450
+        width: 144
+        height: 177
+      alignment: 9
+      pivot: {x: 0.3380892, y: 0.51317257}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f29131b03fcbca380800000000000000
+      internalID: -8958577806697883345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zois_18
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 449
+        width: 145
+        height: 174
+      alignment: 9
+      pivot: {x: 0.34724584, y: 0.51339966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cef006abae7c65e50800000000000000
+      internalID: 6797840498525474796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zois_20
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 446
+        width: 144
+        height: 176
+      alignment: 9
+      pivot: {x: 0.33808982, y: 0.5264948}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f90f1e8cc914b3ab0800000000000000
+      internalID: -5027352417388072801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zois_22
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 453
+        width: 142
+        height: 173
+      alignment: 9
+      pivot: {x: 0.34401864, y: 0.51347715}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20573acb953404560800000000000000
+      internalID: 7295905449036182786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 231c990ef74996547918fc628ede3887
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
