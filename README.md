@@ -9,6 +9,12 @@ With the corresponding Paper-Fighter-Melanee-plugin, users can build stages (sce
 
 After graduating from the University of Mannheim, I further experimented with Unity, implemented mobile controls, created levels, and build the project as a WebGL build.
 
+## Checkout Project
+If you want to checkout on this project, you should consider the following things:
+
+- Use Unity version: 2020.1.17f
+
+
 ## Build
 If you want to build this project, you should be aware of the following things
 

@@ -36,10 +36,6 @@ public class PlayerStateAnimationSound : MonoBehaviour {
         verticalVelocity,
         wallRadius = 0.2f;
 
-
-    public int
-        jumpNo = 0;
-
     //Damage stuff
     private HeartScript heart;
     private int LifeCount = 3;
@@ -69,7 +65,7 @@ public class PlayerStateAnimationSound : MonoBehaviour {
         horizontalSpeed = InputManager.xAxis;
         commitToDirection = ((horizontalSpeed > 0 && facingRight) || (horizontalSpeed < 0 && !facingRight));
         verticalVelocity = rb.velocity.y;
-        grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
+        grounded = Physics2D.OverlapBox(groundCheck.position, new Vector2(1f , groundRadius), 0f, whatIsGround);
         groundedOn = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
         onWall = Physics2D.OverlapCircle(wallDetect.position, wallRadius, whatIsGround);
 
@@ -198,11 +194,6 @@ public class PlayerStateAnimationSound : MonoBehaviour {
     internal void setUpsideDown(bool _upsideDown)
     {
         upsideDown = _upsideDown;
-    }
-
-    internal void incrementJumpNo()
-    {
-        jumpNo++;
     }
 
     internal void PlayJumpSound() {

@@ -16,11 +16,11 @@ public class JumpButton : MonoBehaviour
     private bool jumpRelease;
     [SerializeField]
     private float changeColorIn = 1f;
+    private int currentFingerId = int.MaxValue;
 
     private UnityEngine.UI.Image buttonImage;
     private bool isPressed = false;
-    private bool hasWaitedOneFrame = false;
-    private int currentFingerId = -1;
+    private float changeColorTime;
 
     public bool Jump { get { return jump; } }
     public bool JumpContinuous { get { return jumpContinuous; } }
@@ -35,15 +35,8 @@ public class JumpButton : MonoBehaviour
     {
         if (jump)
         {
-            if (!hasWaitedOneFrame)
-            {
-                hasWaitedOneFrame = true;
-            }
-            else
-            {
-                jump = false;
-                jumpContinuous = true;
-            }
+            jump = false;
+            jumpContinuous = true;
         }
         else if (jumpContinuous)
         {
@@ -54,31 +47,63 @@ public class JumpButton : MonoBehaviour
         {
             jumpRelease = false;
         }
+        bool fingerStillPresent = false;
+        foreach (Touch touch in Input.touches)
+        {
+            if (touch.fingerId == currentFingerId)
+            {
+                fingerStillPresent = true;
+                break;
+            }
+        }
+        if (!fingerStillPresent)
+        {
+            OnPointerUp();
+        }
     }
 
     public void OnPointerDown(BaseEventData eventData)
     {
-        if(!jump && !jumpContinuous && !jumpRelease)
+        if (currentFingerId == int.MaxValue)
         {
-            isPressed = true;
+            currentFingerId = ((PointerEventData)eventData).pointerId;
+            Debug.Log("Finger " + currentFingerId + " entered!");
+            if (!isPressed)
+            {
+                StartCoroutine(JumpPressed());
+            } else
+            {
+                changeColorTime = 0f;
+            }
+            Debug.Log("JUMP!");
             jump = true;
             jumpContinuous = false;
             jumpRelease = false;
-            StartCoroutine(JumpPressed());
+        }
+    }
+
+    public void OnPointerUp()
+    {
+        if (currentFingerId != int.MaxValue)
+        {
+            Debug.Log("Finger " + currentFingerId + " released!");
+            currentFingerId = int.MaxValue;
         }
     }
 
 
     System.Collections.IEnumerator JumpPressed()
     {
-        isPressed = false;
-        float time = 0f;
-        while(!isPressed && time < changeColorIn)
+        isPressed = true;
+        buttonImage.color = pressed;
+        changeColorTime = 0f;
+        while (changeColorTime < changeColorIn)
         {
-            float factor = time / changeColorIn;
+            float factor = changeColorTime / changeColorIn;
             buttonImage.color = Color.Lerp(pressed, neutral, factor);
-            time += Time.deltaTime;
+            changeColorTime += Time.deltaTime;
             yield return null;
         }
+        isPressed = false;
     }
 }

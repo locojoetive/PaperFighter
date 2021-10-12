@@ -5,17 +5,17 @@ public class PlayerMovement : MonoBehaviour
     private PlayerStateAnimationSound state;
     private Rigidbody2D rb;
     
-    private float
-        wallJumpFrame = 0.2f;
-    private int
-        jumpHeight = 10;
+    private float wallJumpFrame = 0.2f;
+    private int jumpHeight = 10;
+    [SerializeField]
+    private int jumpNo = 0;
     
     private float fRememberJumpPressedTime = 0.1f;
-    private float fRememberReplenishJumpsTime = 0.1f;
+    private float fRememberGroundedTime = 0.1f;
     private float fRememberJumpPressed;
-    private float fRememberReplenishJumps;
-    private bool bReplenishJumps = false;
-    private bool bJumping = false;
+    private float fRememberGrounded;
+    private bool bGrounded = false;
+    private bool bJumpPressed = false;
     
     public float damping;
     [Range(0.0f, 1.0f)] public float walkDamping;
@@ -91,49 +91,36 @@ public class PlayerMovement : MonoBehaviour
 
     public void HandleJump()
     {
-        bool actuallyGrounded = state.grounded && ((!state.upsideDown && rb.velocity.y < 0) || (state.upsideDown && rb.velocity.y > 0));
-
-        bReplenishJumps = fRememberReplenishJumps > 0f;
-        bJumping = fRememberJumpPressed > 0f;
-
-        fRememberReplenishJumps -= Time.deltaTime;
+        bool actuallyGrounded = state.grounded && ((!state.upsideDown && rb.velocity.y <= 0) || (state.upsideDown && rb.velocity.y >= 0));
         if (actuallyGrounded || state.wallGrabbing)
         {
-            fRememberReplenishJumps = fRememberReplenishJumpsTime;
+            fRememberGrounded = fRememberGroundedTime;
+            jumpNo = 0;
+        } else if (!bGrounded && jumpNo == 0)
+        {
+            jumpNo = 1;
         }
+        fRememberGrounded -= Time.deltaTime;
+        bGrounded = fRememberGrounded > 0f;
 
-        fRememberJumpPressed -= Time.deltaTime;    
+
         if (InputManager.jump)
         {
             fRememberJumpPressed = fRememberJumpPressedTime;
         }
+        fRememberJumpPressed -= Time.deltaTime;
+        bJumpPressed = fRememberJumpPressed > 0f;
 
-        if (bReplenishJumps)
+        if (bJumpPressed)
         {
-            if (bJumping)
+            if (jumpNo < 2)
             {
-                fRememberJumpPressed = 0f;
-                fRememberReplenishJumps = 0f;
-
-                state.jumpNo = 1;
-                state.PlayJumpSound();
                 Jump();
-            } else if (actuallyGrounded)
-            {
-                state.jumpNo = 0;
+                fRememberJumpPressed = 0f;
+                fRememberGrounded = 0f;
+                jumpNo++;
             }
-        } else if (bJumping && state.jumpNo < 2)
-        {
-            fRememberJumpPressed = 0f;
-
-            state.jumpNo = 2;
-            state.PlayJumpSound();
-            Jump();
         }
-        else if (state.jumpNo == 0)
-        {
-            state.jumpNo = 1;
-        } 
     }
 
     private void Jump()
@@ -155,8 +142,8 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
-            Debug.Log("JUMP NO." + state.jumpNo);
-            fRememberReplenishJumps = 0f;
+            fRememberGrounded = 0f;
         }
+        state.PlayJumpSound();
     }
 }
