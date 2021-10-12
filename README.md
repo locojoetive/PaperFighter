@@ -26,3 +26,20 @@ Build options: Wasm + gzipped ...
 The project was updated to Unity 2020.1.17f and requires no specific packages to build.
 The optimal WebGL build configurations are achieved using the build script integrated as a menu option into the Unity editor and choosing __HTML Export > Wasm release gzipped__.
 With this option the game is compiled into WebAssembly using gzip as its compression format.
+
+
+## Learnings
+
+### Unity WebGL and Mobile Browsers
+Unity WebGL builds are optimized for mobile browsers.
+Due to the limited RAM mobile browsers are providing to web applications, the kind of build (WebAssembly vs Asm.js), the kind of compression (Gzip vs ).
+
+
+### Unity's Input System
+Although Unity's input system can work in WebGL builds, it is not fully supported for mobile input using WebGL.
+Pointer events like OnPointerDown(eventData: BasicEventData) do not work as expected.
+For instance, while they are only fired once in Android builds when a finger is held down on the UI element of interest, they are fired every frame a finger is held down in WebGL builds.
+It seems to be difficult for the application to distinguish when touches occur and when they end.
+
+Therefore to support mobile browsers, I created an independent touch input system, using parts of Unity's input system and catching the edge cases by simplifying their trigger conditions.
+
