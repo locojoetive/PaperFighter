@@ -19,15 +19,15 @@ using System.IO;
 public class ExportWebGL : MonoBehaviour
 {
     private static string[] levelsToPack = new string[] {
-        "Assets/Scenes/pf_title.unity",
-        "Assets/Scenes/pf_intro.unity",
-        "Assets/Scenes/pf_stage_1.unity",
-        "Assets/Scenes/pf_stage_2.unity",
-        "Assets/Scenes/pf_stage_3.unity",
-        "Assets/Scenes/pf_stage_4.unity",
-        "Assets/Scenes/pf_stage_5.unity",
-        "Assets/Scenes/pf_credits.unity",
-        "Assets/Scenes/pf_outro.unity",
+        "Assets/_prefabs/02_Title/pf_title.unity",
+        "Assets/_prefabs/03_Intro/pf_intro.unity",
+        "Assets/_prefabs/06_Stage1/pf_stage_1.unity",
+        "Assets/_prefabs/09_Stage2/pf_stage_2.unity",
+        "Assets/_prefabs/12_Stage3/pf_stage_3.unity",
+        "Assets/_prefabs/13_Stage4/pf_stage_4.unity",
+        "Assets/_prefabs/14_Stage5/pf_stage_5.unity",
+        "Assets/_prefabs/15_Outro/pf_outro.unity",
+        "Assets/_prefabs/16_Credits/pf_credits.unity",
     };
 
     private static string buildLogFile = null;
@@ -69,7 +69,7 @@ public class ExportWebGL : MonoBehaviour
     [MenuItem("MyTools/WebGL Toll")]
     static void DoHtml5BuildToDirectory(string path, string emscriptenLinkerFlags, WebGLCompressionFormat compressionFormat, bool wasm)
     {
-        int memorySize = 64;
+        int memorySize = 256;
         PlayerSettings.WebGL.linkerTarget = wasm ? WebGLLinkerTarget.Wasm : WebGLLinkerTarget.Asm;
         PlayerSettings.WebGL.threadsSupport = false;
         PlayerSettings.WebGL.memorySize = memorySize;
