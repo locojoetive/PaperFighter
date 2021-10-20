@@ -404,8 +404,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c4743a9ca6071146a10a878a28d2484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mobile: {fileID: 0}
-  keyboard: {fileID: 0}
+  mobile: {fileID: 1506693095}
+  keyboard: {fileID: 290347690}
 --- !u!1 &222855998
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,8 +636,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c4743a9ca6071146a10a878a28d2484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mobile: {fileID: 0}
-  keyboard: {fileID: 0}
+  mobile: {fileID: 1752509916}
+  keyboard: {fileID: 795377753}
 --- !u!4 &481361901
 Transform:
   m_ObjectHideFlags: 0
@@ -814,8 +814,9 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fb8797bcdd857664aada8f90cff5a9cb, type: 2}
+  m_sharedMaterial: {fileID: 6865122441630064725, guid: fb8797bcdd857664aada8f90cff5a9cb,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1522,7 +1523,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1547333392
 MonoBehaviour:
   m_ObjectHideFlags: 0
