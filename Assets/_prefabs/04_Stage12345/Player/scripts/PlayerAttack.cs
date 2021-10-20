@@ -19,7 +19,7 @@ public class PlayerAttack : MonoBehaviour
     private float swipeLowerBound = 20f;
     private float swipeUpperBound = 100f;
     private float maximumShootPower = 3.5f;
-    private float keyboardAimSpeed = 10f;
+    private float keyboardAimSpeed = 20f;
 
     void Start()
     {
