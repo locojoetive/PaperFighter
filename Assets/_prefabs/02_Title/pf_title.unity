@@ -331,6 +331,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5303629607524825480, guid: de8100b53a4344d4b9aeeb4eacf58ac2,
         type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5303629607524825480, guid: de8100b53a4344d4b9aeeb4eacf58ac2,
+        type: 3}
       propertyPath: m_TagString
       value: EditorOnly
       objectReference: {fileID: 0}
